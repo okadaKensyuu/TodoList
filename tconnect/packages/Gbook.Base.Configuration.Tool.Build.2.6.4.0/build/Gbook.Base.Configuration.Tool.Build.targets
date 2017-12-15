@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <BuildDependsOn Condition="!Exists('$(SolutionDir).nuget\NuGet.targets')">
+      GbookBaseConfigurationTool;
+      $(BuildDependsOn);
+    </BuildDependsOn>
+    <BuildDependsOn Condition="Exists('$(SolutionDir).nuget\NuGet.targets')">
+      RestorePackages;
+      GbookBaseConfigurationTool;
+      $(BuildDependsOn);
+    </BuildDependsOn>
+  </PropertyGroup>
+  <PropertyGroup Condition="$(GbookBaseConfigurationToolDir) == ''">
+    <GbookBaseConfigurationToolDir>$(MSBuildThisFileDirectory.Replace("Gbook.Base.Configuration.Tool.Build", "Gbook.Base.Configuration.Tool"))..\tools</GbookBaseConfigurationToolDir>
+  </PropertyGroup>
+
+  <!-- GbookBaseConfigurationToolタスク -->
+
+  <Target Name="GbookBaseConfigurationTool">
+    <!-- 
+    最後に円記号 (\) が含まれるプロパティの場合、ダブルクォートで囲むとダブルクォートがエスケープされてしまうので注意してください。
+    ここでは円記号（\）を重ねることによって、プロパティの最後の円記号（\）をエスケープしています。
+    例: &quot;$(SolutionDir)\&quot;
+    -->
+    <Exec Command="powershell -ExecutionPolicy RemoteSigned -File &quot;$(MSBuildThisFileDirectory)Run.ps1&quot; -ToolsPath &quot;$(GbookBaseConfigurationToolDir)&quot; -ConfigurationName &quot;$(ConfigurationName)&quot; -SolutionDir &quot;$(SolutionDir)\&quot; -ProjectName &quot;$(ProjectName)&quot; -HostedProjectDir &quot;$(MSBuildProjectDirectory)&quot;" LogStandardErrorAsError="true"/>
+  </Target>
+</Project>

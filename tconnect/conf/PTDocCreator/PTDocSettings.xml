@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<PTDocSettings>
+
+  <!-- テンプレート "TM" or "default" -->
+  <Template>TM</Template>
+
+  <!-- 単体テスト作成対象のdllのパス -->
+  <SolutionPath>.\pcs01ap.sln</SolutionPath>
+
+  <!-- 出力先 -->
+  <OutputDirPath>doc\PTDocCreator</OutputDirPath>
+
+  <!-- ID -->
+  <ID>単体テスト仕様書兼結果報告書</ID>
+
+  <!-- 大カテゴリ -->
+  <Cat1>アプリ開発（センター）</Cat1>
+
+  <!-- 中カテゴリ -->
+  <Cat2>PCサイト</Cat2>
+
+  <!-- 小カテゴリ -->
+  <Cat3>PCユーザサイト（TOYOTA）/ T-Connect PCサイト</Cat3>
+
+  <!-- 地域 "国内"or"中国"-->
+  <Area>国内</Area>
+
+  <!-- No -->
+  <No>12501-PT01</No>
+
+  <!-- Version -->
+  <Version>1.000J</Version>
+
+  <!-- サーバ名 -->
+  <Server>UI</Server>
+
+  <!-- フッター文字列 -->
+  <Footer>TOYOTA MOTOR CORPORATION</Footer>
+
+  <!-- 担当者 -->
+  <Worker>加賀</Worker>
+
+  <!-- 確認者 -->
+  <Checker>笹尾</Checker>
+
+  <!-- 責任者 -->
+  <Manager>山田</Manager>
+
+  <!-- 初版発行日 -->
+  <FirstDate>2014/12/01</FirstDate>
+
+  <!-- 正式版発行日 -->
+  <OfficialDate>2014/12/04</OfficialDate>
+
+  <!-- テスト完了日 -->
+  <FinishDate>2014/12/05</FinishDate>
+
+  <!-- ワークブック分割単位ブック -->
+  <MaxPage>100</MaxPage>
+
+  <!-- テスト件数指標値(/1kstep) -->
+  <TestIndex>100</TestIndex>
+
+  <!-- 障害発生率指標値 -->
+  <FailureIndex>10</FailureIndex>
+
+  <!-- 不具合事象にスタックトレースを使用する場合、TRUE "TRUE"かそれ以外 -->
+  <EnabledStackTrace>FALSE</EnabledStackTrace>
+
+  <!-- テストを無条件でGreenにするする場合、TRUE "TRUE"かそれ以外 -->
+  <DisabledRunTests>TRUE</DisabledRunTests>
+
+</PTDocSettings>

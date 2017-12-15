@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- For Development. Don't remove this comment. -->
+<ServiceConfiguration serviceName="otr-tconnect" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceConfiguration" osFamily="4" osVersion="WA-GUEST-OS-4.40_201703-01" schemaVersion="2015-04.2.6">
+  <Role name="pcs01ap">
+    <Instances count="2" />
+    <ConfigurationSettings>
+      <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" value="DefaultEndpointsProtocol=https;AccountName=tconnect;AccountKey=P2Z4ezKPexwldYgOUxBBTIFDcwaMSEvC+zEviqMngUzEzkC2pI+B70q/9asA8aeT78cvcHNQMRAcTw4iR75N9Q==" />
+      <Setting name="Microsoft.WindowsAzure.Plugins.RemoteAccess.Enabled" value="true" />
+      <Setting name="Microsoft.WindowsAzure.Plugins.RemoteAccess.AccountUsername" value="manager" />
+      <Setting name="Microsoft.WindowsAzure.Plugins.RemoteAccess.AccountEncryptedPassword" value="MIIBnQYJKoZIhvcNAQcDoIIBjjCCAYoCAQAxggFOMIIBSgIBADAyMB4xHDAaBgNVBAMME1dpbmRvd3MgQXp1cmUgVG9vbHMCEEp+VAdggZCBTE70gomQPsswDQYJKoZIhvcNAQEBBQAEggEAKTLaSwWszskDzLcRH6+kZz9lTnDna8AooMNi3YGyH45BVBEYvN4FIccmnNfSxEuZVtPz7+MZJLyiYMQ6QcnBvow+L9Yp05sZ70VLbbZQaMWtB7RB+cCXxH12nDHJBgm6KD4EUBKT/lPVtfqUuFt+gDCD0ZOjjg+XTE3bCZSOLl8yRc0ygOP7S1QqMYB6ph8aUu5q+gy6Mvsz0++aoEu8Nw5hFV9OPkFL4gjS2IL7d29+X5uNHmS4ZEPp8KDhmtwKDcN1jlRVOdW8AzNpHeOvb8Nexgsjn70f9j4lzOlwnJthY0hW2jT23iuuFfeZW4Uly7Mec3U2y2RB9126Pjq2RjAzBgkqhkiG9w0BBwEwFAYIKoZIhvcNAwcECKy2RG4w/h8PgBAZnOPYqVbYYA5GmUE2N9ET" />
+      <Setting name="Microsoft.WindowsAzure.Plugins.RemoteAccess.AccountExpiration" value="2030-12-31T23:59:59.0000000+09:00" />
+      <Setting name="Microsoft.WindowsAzure.Plugins.RemoteForwarder.Enabled" value="true" />
+    </ConfigurationSettings>
+    <Certificates>
+      <Certificate name="SSLCert1" thumbprint="F124A71F6908C64B1402DC531EA6F2097B053869" thumbprintAlgorithm="sha1" />
+      <Certificate name="Microsoft.WindowsAzure.Plugins.RemoteAccess.PasswordEncryption" thumbprint="37C29BD5E6D8743F5D3E78EB2AC2A6F4459F3842" thumbprintAlgorithm="sha1" />
+    </Certificates>
+  </Role>
+</ServiceConfiguration>

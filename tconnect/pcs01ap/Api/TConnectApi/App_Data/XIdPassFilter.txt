@@ -1,0 +1,6 @@
+﻿hoge,piyo
+hoge1,piyo1
+X-Id_TConnect_Debug,X-Password_TConnect_Debug
+PCAZTC1JPG-K,sbhi_0o8t90940fj-asgf/das
+PCUSAZTCJP-K,8xe7r-fs9f/8s3s_dfio36sdu
+PCUSAZTCJP-G,iogc3fzsdio7_8c4/d-5xrdgf

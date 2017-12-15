@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- For Commercial. Don't remove this comment. -->
+<ServiceConfiguration serviceName="pcs01ap" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceConfiguration" osFamily="4" osVersion="WA-GUEST-OS-4.40_201703-01" schemaVersion="2015-04.2.6">
+  <Role name="pcs01ap">
+    <Instances count="2" />
+    <ConfigurationSettings>
+      <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" value="DefaultEndpointsProtocol=https;AccountName=cstpcsm0101;AccountKey=H6wQn3s7T3aUCVn/YZ4IBwq0Af3Y8oI48xNK3cw5yF/d21gaJduf1y3AUshewvlowf6mIzAPfSlHw1pvGIbUqw==" />
+      <Setting name="Microsoft.WindowsAzure.Plugins.RemoteAccess.Enabled" value="true" />
+      <Setting name="Microsoft.WindowsAzure.Plugins.RemoteAccess.AccountUsername" value="PCS01AP_RDPAdmin" />
+      <Setting name="Microsoft.WindowsAzure.Plugins.RemoteAccess.AccountEncryptedPassword" value="MIIBnQYJKoZIhvcNAQcDoIIBjjCCAYoCAQAxggFOMIIBSgIBADAyMB4xHDAaBgNVBAMTE1BDUzAxIFJlbW90ZURlc2t0b3ACEAUfWuSCEj+wTGSEVt+f2oswDQYJKoZIhvcNAQEBBQAEggEAlgnSaSFekCAATbzQvxovLp9GMtq6PYzdqrR/N18c48LyvsKYXPkyMu4Eqi8nVzVLzPGTxLj2mky9DwJQmNfNuV0zuJsn4QQh6p0J10BF0FydhfQ95dxuoHu7GZNjnKpBEr+d3SJPdGW5gig7t0W/HeukAOajn9lvN6xxy3Vsh5BU1SHL6yuNjs9sr7IRe4qtCK536o5P55oCD6plDnTwer1+BVh9NzlD08K+xLL23mvGIMXm7T9XYWLLCUJCaVzzsfiHKgzhSpRL8c/5rOZFKO7BUDlWYFJqYhiyO0qa8vDyvgD5HdfcYznduRneRoLpnEaZaAOMlQvkvJKcDqjQfTAzBgkqhkiG9w0BBwEwFAYIKoZIhvcNAwcECEA2ke81JG/AgBB0AmJUjPzJ0hNyBUjMiGYZ" />
+      <Setting name="Microsoft.WindowsAzure.Plugins.RemoteAccess.AccountExpiration" value="2030-12-31T23:59:59.0000000+09:00" />
+      <Setting name="Microsoft.WindowsAzure.Plugins.RemoteForwarder.Enabled" value="true" />
+    </ConfigurationSettings>
+    <Certificates>
+      <Certificate name="SSLCert1" thumbprint="A029631D7A9D4CC53DE9F1902BBF5C1FB8DEC7A0" thumbprintAlgorithm="sha1" />
+      <Certificate name="Microsoft.WindowsAzure.Plugins.RemoteAccess.PasswordEncryption" thumbprint="23941AC5EF9C4F71F6713DAF7E44D111EAF10425" thumbprintAlgorithm="sha1" />
+    </Certificates>
+  </Role>
+</ServiceConfiguration>
