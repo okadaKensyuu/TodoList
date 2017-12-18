@@ -1,0 +1,1627 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Gbook.Base.Diagnostics</name>
+    </assembly>
+    <members>
+        <member name="T:Gbook.Base.Diagnostics.EventIdFilter">
+            <summary>
+            リスナがイベントの ID に基づいてトレースする必要があるかどうかを示します。
+            </summary>
+        </member>
+        <member name="M:Gbook.Base.Diagnostics.EventIdFilter.#ctor(System.Int32)">
+            <summary>
+            指定した ID をトレースします。
+            </summary>
+            <param name="targetId">イベントの ID</param>
+        </member>
+        <member name="M:Gbook.Base.Diagnostics.EventIdFilter.ShouldTrace(System.Diagnostics.TraceEventCache,System.String,System.Diagnostics.TraceEventType,System.Int32,System.String,System.Object[],System.Object,System.Object[])">
+            <summary>
+            トレース リスナーでイベントをトレースする必要があるかどうかを決定します。
+            </summary>
+            <param name="cache">トレース イベントの情報キャッシュを表すオブジェクト</param>
+            <param name="source">ソースの名前</param>
+            <param name="eventType">イベントの種類を識別する列挙値の 1 つ</param>
+            <param name="id">トレース識別子番号</param>
+            <param name="formatOrMessage">引数の配列を書き込むために使用する形式、または書き込むメッセージの形式</param>
+            <param name="args">引数オブジェクトの配列</param>
+            <param name="data1">トレース データ オブジェクト</param>
+            <param name="data">トレース データ オブジェクトの配列</param>
+            <returns>トレースを作成する必要がある場合は true。それ以外の場合は false。</returns>
+        </member>
+        <member name="T:Gbook.Base.Diagnostics.ExpressionFilter">
+            <summary>
+            リスナが CSharp 式 に基づいてトレースする必要があるかどうかを示します。
+            </summary>
+        </member>
+        <member name="M:Gbook.Base.Diagnostics.ExpressionFilter.#ctor(System.String)">
+            <summary>
+            指定した CSharp 式が true を返すときトレースをします。
+            </summary>
+            <remarks>
+            下記の変数に対して論理式を構築します。
+            * TraceEventCache Event
+            * string Source
+            * TraceEventType EventType
+            * int Id
+            * string Format
+            * string Callstack
+            * DateTimeOffset DateTime
+            * System.Collections.Stack LogicalOperationStack
+            * int ProcessId
+            * string ThreadId
+            * long Timestamp
+            </remarks>
+            <param name="expression">CSharp 式</param>
+        </member>
+        <member name="M:Gbook.Base.Diagnostics.ExpressionFilter.ShouldTrace(System.Diagnostics.TraceEventCache,System.String,System.Diagnostics.TraceEventType,System.Int32,System.String,System.Object[],System.Object,System.Object[])">
+            <summary>
+            トレース リスナーでイベントをトレースする必要があるかどうかを決定します。
+            </summary>
+            <param name="cache">トレース イベントの情報キャッシュを表すオブジェクト</param>
+            <param name="source">ソースの名前</param>
+            <param name="eventType">イベントの種類を識別する列挙値の 1 つ</param>
+            <param name="id">トレース識別子番号</param>
+            <param name="formatOrMessage">引数の配列を書き込むために使用する形式、または書き込むメッセージの形式</param>
+            <param name="args">引数オブジェクトの配列</param>
+            <param name="data1">トレース データ オブジェクト</param>
+            <param name="data">トレース データ オブジェクトの配列</param>
+            <returns>トレースを作成する必要がある場合は true。それ以外の場合は false。</returns>
+        </member>
+        <member name="T:Gbook.Base.Diagnostics.IFile">
+            <summary>
+            ファイルへの操作を示すインターフェースです。
+            </summary>
+        </member>
+        <member name="M:Gbook.Base.Diagnostics.IFile.IsExists(System.String)">
+            <summary>
+            指定したパスのファイルが存在するかどうかを取得します。
+            </summary>
+            <param name="fileName">ファイルのパス</param>
+            <returns></returns>
+        </member>
+        <member name="M:Gbook.Base.Diagnostics.IFile.GetFileSize(System.String)">
+            <summary>
+            指定したパスのファイルのサイズを取得します。
+            </summary>
+            <param name="fileName">ファイルのパス</param>
+            <returns></returns>
+        </member>
+        <member name="T:Gbook.Base.Diagnostics.FileNamePlaceHolders">
+            <summary>
+            パスを含むパスのプレースホルダ―のクラスです。
+            </summary>
+        </member>
+        <member name="P:Gbook.Base.Diagnostics.FileNamePlaceHolders.VersionFormat">
+            <summary>
+            バージョンの書式を取得または設定します。
+            </summary>
+        </member>
+        <member name="P:Gbook.Base.Diagnostics.FileNamePlaceHolders.DateFormat">
+            <summary>
+            日付の書式を取得または設定します。
+            </summary>
+        </member>
+        <member name="P:Gbook.Base.Diagnostics.FileNamePlaceHolders.VersionPlaceHolder">
+            <summary>
+            バージョンのプレースホルダ―を取得または設定します。
+            </summary>
+        </member>
+        <member name="P:Gbook.Base.Diagnostics.FileNamePlaceHolders.DatePlaceHolder">
+            <summary>
+            日付のプレースホルダ―を取得または設定します。
+            </summary>
+        </member>
+        <member name="P:Gbook.Base.Diagnostics.FileNamePlaceHolders.MachineNamePlaceHolder">
+            <summary>
+            マシン名のプレースホルダ―を取得または設定します。
+            </summary>
+        </member>
+        <member name="P:Gbook.Base.Diagnostics.FileNamePlaceHolders.PidPlaceHolder">
+            <summary>
+            プロセスIDのプレースホルダ―を取得または設定します。
+            </summary>
+        </member>
+        <member name="P:Gbook.Base.Diagnostics.FileNamePlaceHolders.PidFormat">
+            <summary>
+            プロセスIDの書式を取得または設定します。
+            </summary>
+        </member>
+        <member name="T:Gbook.Base.Diagnostics.IEnvironmentForFileRolling">
+            <summary>
+            ファイル名を切り替えるための環境を取得するインターフェースを提供します。
+            </summary>
+        </member>
+        <member name="M:Gbook.Base.Diagnostics.IEnvironmentForFileRolling.IsAppRelative(System.String)">
+            <summary>
+            指定された仮想パスがアプリにおいて相対的かどうかを取得します。
+            </summary>
+            <param name="virtualPath">仮想パス</param>
+            <returns>アプリにおいて相対的であれば true, そうでなければfalseを返します。</returns>
+        </member>
+        <member name="M:Gbook.Base.Diagnostics.IEnvironmentForFileRolling.MapPath(System.String)">
+            <summary>
+            アプリにおいて相対的なパスをマッピングします。
+            </summary>
+            <param name="virtualPath">仮想パス</param>
+            <returns>マッピングされた仮想パス</returns>
+        </member>
+        <member name="P:Gbook.Base.Diagnostics.IEnvironmentForFileRolling.MachineName">
+            <summary>
+            マシン名を取得します。
+            </summary>
+        </member>
+        <member name="T:Gbook.Base.Diagnostics.IFileRolling">
+            <summary>
+            ファイル名を切り替えるためのインターフェースを提供します。
+            </summary>
+        </member>
+        <member name="M:Gbook.Base.Diagnostics.IFileRolling.GetFileName(System.DateTime,System.Int32)">
+            <summary>
+            指定した日付とプロセスIDから新しいファイル名を取得します。
+            </summary>
+            <param name="now">現在の日付</param>
+            <param name="pid">プロセスID</param>
+            <returns>新しいファイル名</returns>
+        </member>
+        <member name="P:Gbook.Base.Diagnostics.IFileRolling.Environment">
+            <summary>
+            ファイル名の元となる環境を取得します。
+            </summary>
+        </member>
+        <member name="T:Gbook.Base.Diagnostics.FileRolling">
+            <summary>
+            ファイル名とパスを日付やバージョンによって変更します。
+            </summary>
+        </member>
+        <member name="M:Gbook.Base.Diagnostics.FileRolling.#ctor(Gbook.Base.Diagnostics.IFile,Gbook.Base.Diagnostics.FileNamePlaceHolders,System.Int64,System.String)">
+            <summary>
+            オブジェクトを初期化します。
+            </summary>
+            <param name="file">ファイル操作のオブジェクト</param>
+            <param name="placeHolders">ファイル名のプレースホルダ―</param>
+            <param name="maxSize">最大ファイルサイズ</param>
+            <param name="fileNameTemplate">ファイル名のテンプレート</param>
+        </member>
+        <member name="M:Gbook.Base.Diagnostics.FileRolling.GetFileName(System.DateTime,System.Int32)">
+            <summary>
+            指定した日付に対応付けられるパスを含むファイル名を取得します。
+            </summary>
+            <param name="now">現在時刻</param>
+            <param name="pid">PID</param>
+            <returns>現在時刻に対応するファイル名</returns>
+        </member>
+        <member name="T:Gbook.Base.Diagnostics.TraceContext">
+            <summary>
+            トレースのコンテキストを表します。
+            </summary>
+        </member>
+        <member name="M:Gbook.Base.Diagnostics.TraceContext.#ctor(System.Guid,System.Collections.Generic.IReadOnlyList{System.Collections.Generic.KeyValuePair{System.String,System.Object}},System.Collections.Generic.IReadOnlyList{System.Collections.Generic.KeyValuePair{System.String,System.Object}},Gbook.Base.Diagnostics.MethodName)">
+            <summary>
+            指定された引数で、トレースコンテキストのオブジェクトを初期化します。
+            </summary>
+            <param name="id">トレースの内部ID</param>
+            <param name="logItems">ログ項目の読み取り専用リスト</param>
+            <param name="additionalLogItems">追加ログ項目の読み取り専用リスト</param>
+            <param name="callingMethodName">ログ出力関数を呼び出したメソッド名</param>
+        </member>
+        <member name="P:Gbook.Base.Diagnostics.TraceContext.Id">
+            <summary>
+            トレースデータの内部的な ID を取得します。
+            </summary>
+        </member>
+        <member name="P:Gbook.Base.Diagnostics.TraceContext.LogItems">
+            <summary>
+            ログ項目の読み取り専用リストを取得します。
+            </summary>
+        </member>
+        <member name="P:Gbook.Base.Diagnostics.TraceContext.AdditionalLogItems">
+            <summary>
+            追加ログ項目の読み取り専用リストを取得します。
+            </summary>
+        </member>
+        <member name="P:Gbook.Base.Diagnostics.TraceContext.CallingMethodName">
+            <summary>
+            設定 Gbook.Base.Diagnostics.CallingMethodInfo が有効だった場合、トレース関数の呼び出し元メソッド名を取得します。
+            もし設定が有効でなかった場合は、MethodName.Noneが返却されます。
+            </summary>
+        </member>
+        <member name="T:Gbook.Base.Diagnostics.FormattedTraceData">
+            <summary>
+            フォーマットされるトレースデータを提供します。
+            </summary>
+        </member>
+        <member name="M:Gbook.Base.Diagnostics.FormattedTraceData.#ctor(Gbook.Base.Diagnostics.TraceContext,System.String,System.String,System.Object[])">
+            <summary>
+            オブジェクトを初期化します。
+            </summary>
+            <param name="traceContext"></param>
+            <param name="summaryFormat"></param>
+            <param name="format"></param>
+            <param name="parameters"></param>
+        </member>
+        <member name="M:Gbook.Base.Diagnostics.FormattedTraceData.ToString">
+            <summary>
+            書式とパラメータ配列を使用して文字列化します。
+            </summary>
+            <returns>書式化された文字列</returns>
+        </member>
+        <member name="P:Gbook.Base.Diagnostics.FormattedTraceData.Id">
+            <summary>
+            トレースデータの内部的な ID を取得します。
+            </summary>
+        </member>
+        <member name="P:Gbook.Base.Diagnostics.FormattedTraceData.SummaryFormat">
+            <summary>
+            トレースデータの説明書式を取得します。
+            </summary>
+        </member>
+        <member name="P:Gbook.Base.Diagnostics.FormattedTraceData.Summary">
+            <summary>
+            トレースデータの説明を取得します。
+            </summary>
+        </member>
+        <member name="P:Gbook.Base.Diagnostics.FormattedTraceData.Format">
+            <summary>
+            トレースデータを文字列化するときの書式を取得します。
+            </summary>
+        </member>
+        <member name="P:Gbook.Base.Diagnostics.FormattedTraceData.Parameters">
+            <summary>
+            トレースデータのパラメータ配列を取得します。
+            </summary>
+        </member>
+        <member name="P:Gbook.Base.Diagnostics.FormattedTraceData.LogItems">
+            <summary>
+            トレースのログ項目の読み取り専用リストを取得します。
+            </summary>
+        </member>
+        <member name="P:Gbook.Base.Diagnostics.FormattedTraceData.AdditionalLogItems">
+            <summary>
+            トレースの追加ログ項目の読み取り専用リストを取得します。
+            </summary>
+        </member>
+        <member name="P:Gbook.Base.Diagnostics.FormattedTraceData.CallingMethodName">
+            <summary>
+            設定 Gbook.Base.Diagnostics.CallingMethodInfo が有効だった場合、トレース関数の呼び出し元メソッド名を取得します。
+            もし設定が有効でなかった場合は、MethodName.Noneが返却されます。
+            </summary>
+        </member>
+        <member name="P:Gbook.Base.Diagnostics.FormattedTraceData.Exceptions">
+            <summary>
+            パラメータ配列に含まれている例外配列を返します。
+            </summary>
+        </member>
+        <member name="T:Gbook.Base.Diagnostics.TraceListenerState">
+            <summary>
+            トレースリスナーの状態を表現する列挙型です。
+            </summary>
+        </member>
+        <member name="F:Gbook.Base.Diagnostics.TraceListenerState.Valid">
+            <summary>
+            正常な状態です。
+            </summary>
+        </member>
+        <member name="F:Gbook.Base.Diagnostics.TraceListenerState.Invalid">
+            <summary>
+            不正な状態です。トレースリスナーがこの状態のときDisposeとClose以外の操作は失敗します。
+            </summary>
+        </member>
+        <member name="F:Gbook.Base.Diagnostics.TraceListenerState.Closed">
+            <summary>
+            破棄された状態です。トレースリスナーがこの状態のときDisposeとClose以外の操作は失敗します。
+            </summary>
+        </member>
+        <member name="T:Gbook.Base.Diagnostics.FormattedTraceListener">
+            <summary>
+            トレースフォーマッターを使用して、トレースを文字列化できるトレースリスナーの抽象クラスです。
+            </summary>
+        </member>
+        <member name="F:Gbook.Base.Diagnostics.FormattedTraceListener.state">
+            <summary>
+            トレースリスナーの状態を保持します。
+            </summary>
+        </member>
+        <member name="F:Gbook.Base.Diagnostics.FormattedTraceListener.currentException">
+            <summary>
+            stateがInvalidであるとき、その例外を保持します。
+            </summary>
+        </member>
+        <member name="M:Gbook.Base.Diagnostics.FormattedTraceListener.OnExceptionRaised(System.Exception)">
+            <summary>
+            例外が発生したことを通知して、トレースリスナーの状態をInvalidに変更します。
+            </summary>
+            <param name="exn">発生した例外オブジェクト</param>
+        </member>
+        <member name="M:Gbook.Base.Diagnostics.FormattedTraceListener.ValidateState">
+            <summary>
+            トレースリスナーの状態を検証します。状態がValidでないときこのメソッドは例外を発生させます。
+            </summary>
+        </member>
+        <member name="M:Gbook.Base.Diagnostics.FormattedTraceListener.#ctor">
+            <summary>
+            オブジェクトを初期化します。
+            </summary>
+        </member>
+        <member name="M:Gbook.Base.Diagnostics.FormattedTraceListener.#ctor(System.String)">
+            <summary>
+            指定された名前でオブジェクトを初期化します。
+            </summary>
+            <param name="name">トレースリスナーの名前</param>
+        </member>
+        <member name="M:Gbook.Base.Diagnostics.FormattedTraceListener.GetSupportedAttributes">
+            <summary>
+            トレース リスナーによってサポートされるカスタム属性を取得します。
+            </summary>
+            <returns>トレース リスナーによってサポートされるカスタム属性の名前を付ける文字列配列。カスタム属性がない場合は null 参照</returns>
+        </member>
+        <member name="M:Gbook.Base.Diagnostics.FormattedTraceListener.TraceData(System.Diagnostics.TraceEventCache,System.String,System.Diagnostics.TraceEventType,System.Int32,System.Object)">
+            <summary>
+            トレース情報、データ オブジェクト、およびイベント情報をリスナー固有の出力に書き込みます。
+            </summary>
+            <param name="eventCache">現在のプロセス ID、スレッド ID、およびスタック トレース情報を格納している TraceEventCache オブジェクト</param>
+            <param name="source">出力を識別するために使用される名前。通常は、トレース イベントを生成したアプリケーションの名前。</param>
+            <param name="eventType">トレースを発生させたイベントのタイプを指定する TraceEventType 値の 1 つ</param>
+            <param name="id">イベントの数値識別子</param>
+            <param name="data">出力するトレース データ</param>
+        </member>
+        <member name="M:Gbook.Base.Diagnostics.FormattedTraceListener.TraceData(System.Diagnostics.TraceEventCache,System.String,System.Diagnostics.TraceEventType,System.Int32,System.Object[])">
+            <summary>
+            トレース情報、データ オブジェクト、およびイベント情報の配列をリスナー固有の出力に書き込みます。
+            </summary>
+            <param name="eventCache">現在のプロセス ID、スレッド ID、およびスタック トレース情報を格納している TraceEventCache オブジェクト</param>
+            <param name="source">出力を識別するために使用される名前。通常は、トレース イベントを生成したアプリケーションの名前。</param>
+            <param name="eventType">トレースを発生させたイベントのタイプを指定する TraceEventType 値の 1 つ</param>
+            <param name="id">イベントの数値識別子</param>
+            <param name="data">出力するトレース データ</param>
+        </member>
+        <member name="M:Gbook.Base.Diagnostics.FormattedTraceListener.TraceEvent(System.Diagnostics.TraceEventCache,System.String,System.Diagnostics.TraceEventType,System.Int32,System.String,System.Object[])">
+            <summary>
+            トレース情報、オブジェクトの書式付き配列、およびイベント情報をリスナー固有の出力に書き込みます。
+            </summary>
+            <param name="eventCache">現在のプロセス ID、スレッド ID、およびスタック トレース情報を格納している TraceEventCache オブジェクト</param>
+            <param name="source">出力を識別するために使用される名前。通常は、トレース イベントを生成したアプリケーションの名前。</param>
+            <param name="eventType">トレースを発生させたイベントのタイプを指定する TraceEventType 値の 1 つ</param>
+            <param name="id">イベントの数値識別子</param>
+            <param name="format"></param>
+            <param name="args"></param>
+        </member>
+        <member name="M:Gbook.Base.Diagnostics.FormattedTraceListener.TraceEvent(System.Diagnostics.TraceEventCache,System.String,System.Diagnostics.TraceEventType,System.Int32,System.String)">
+            <summary>
+            トレース情報、メッセージ、およびイベント情報をリスナー固有の出力に書き込みます。
+            </summary>
+            <param name="eventCache">現在のプロセス ID、スレッド ID、およびスタック トレース情報を格納している TraceEventCache オブジェクト</param>
+            <param name="source">出力を識別するために使用される名前。通常は、トレース イベントを生成したアプリケーションの名前。</param>
+            <param name="eventType">トレースを発生させたイベントのタイプを指定する TraceEventType 値の 1 つ</param>
+            <param name="id">イベントの数値識別子</param>
+            <param name="message"></param>
+        </member>
+        <member name="M:Gbook.Base.Diagnostics.FormattedTraceListener.Write(System.String)">
+            <summary>
+            派生クラスによってオーバーライドされるときに、派生クラスで作成したリスナーに指定したメッセージを書き込みます。
+            </summary>
+            <param name="message">書き込むメッセージ</param>
+        </member>
+        <member name="M:Gbook.Base.Diagnostics.FormattedTraceListener.WriteTrace(Gbook.Base.Diagnostics.ITraceFormatter,Gbook.Base.Diagnostics.TraceEvent)">
+            <summary>
+            トレースを書き込みます。
+            </summary>
+            <param name="traceFormatter">文字列化に使用するトレースフォーマッター</param>
+            <param name="traceEvent">出力を行うトレースイベント</param>
+        </member>
+        <member name="M:Gbook.Base.Diagnostics.FormattedTraceListener.WriteLine(System.String)">
+            <summary>
+            派生クラスによってオーバーライドされるときに、派生クラスで作成したリスナーにメッセージと行終端記号を書き込みます。
+            </summary>
+            <param name="message">書き込むメッセージ</param>
+        </member>
+        <member name="M:Gbook.Base.Diagnostics.FormattedTraceListener.Flush">
+            <summary>
+            出力バッファーをフラッシュします。
+            </summary>
+        </member>
+        <member name="M:Gbook.Base.Diagnostics.FormattedTraceListener.FlushCore">
+            <summary>
+            派生クラスによってオーバーライドされるときに、出力バッファーをフラッシュします。
+            </summary>
+        </member>
+        <member name="M:Gbook.Base.Diagnostics.FormattedTraceListener.Close">
+            <summary>
+            出力ストリームを終了して、トレース出力またはデバッグ出力を受信しないようにします。
+            </summary>
+        </member>
+        <member name="M:Gbook.Base.Diagnostics.FormattedTraceListener.CloseCore">
+            <summary>
+            派生クラスによってオーバーライドされるときに、出力ストリームを終了して、トレース出力またはデバッグ出力を受信しないようにします。
+            </summary>
+        </member>
+        <member name="P:Gbook.Base.Diagnostics.FormattedTraceListener.FormatterType">
+            <summary>
+            トレースフォーマッターの型を取得します。
+            </summary>
+        </member>
+        <member name="T:Gbook.Base.Diagnostics.FormatStyle">
+            <summary>
+            書式化のスタイルを示す列挙型です。
+            </summary>
+        </member>
+        <member name="F:Gbook.Base.Diagnostics.FormatStyle.Singleline">
+            <summary>
+            すべての項目を1行に書式化します(デリミタは|)。
+            </summary>
+        </member>
+        <member name="F:Gbook.Base.Diagnostics.FormatStyle.SinglelineWithSpace">
+            <summary>
+            すべての項目を1行に書式化します(デリミタはスペース)。
+            </summary>
+        </member>
+        <member name="F:Gbook.Base.Diagnostics.FormatStyle.Multiline">
+            <summary>
+            複数行に書式化します。
+            </summary>
+        </member>
+        <member name="T:Gbook.Base.Diagnostics.FormatUtility">
+            <summary>
+            項目を書式化をするクラスです。
+            </summary>
+        </member>
+        <member name="M:Gbook.Base.Diagnostics.FormatUtility.Format(System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.String,System.Object}},Gbook.Base.Diagnostics.FormatStyle)">
+            <summary>
+            指定された項目とスタイルで書式化をします。
+            </summary>
+            <param name="items">項目の列</param>
+            <param name="style">書式化のスタイル</param>
+            <returns>書式化された文字列</returns>
+        </member>
+        <member name="M:Gbook.Base.Diagnostics.FormatUtility.Indent(System.String)">
+            <summary>
+            指定された文字列のインデントを行います。
+            先頭には、インデントが追加されないことに注意してください。
+            </summary>
+            <param name="text">インデントされる文字列</param>
+            <returns>インデントされた文字列</returns>
+        </member>
+        <member name="T:Gbook.Base.Diagnostics.HealthCheckEventArgs">
+            <summary>
+            トレースが発生したときに発行されるイベントです。
+            </summary>
+        </member>
+        <member name="M:Gbook.Base.Diagnostics.HealthCheckEventArgs.#ctor(Gbook.Base.Diagnostics.ITraceFormatter,Gbook.Base.Diagnostics.TraceEvent)">
+            <summary>
+            オブジェクトを初期化します。
+            </summary>
+            <param name="traceFormatter">トレースフォーマッター</param>
+            <param name="traceEvent">発生したトレースイベント</param>
+        </member>
+        <member name="P:Gbook.Base.Diagnostics.HealthCheckEventArgs.TraceEvent">
+            <summary>
+            発生したトレースイベントを取得します。
+            </summary>
+        </member>
+        <member name="P:Gbook.Base.Diagnostics.HealthCheckEventArgs.TraceFormatter">
+            <summary>
+            設定されているトレースフォーマッターを取得します。
+            </summary>
+        </member>
+        <member name="T:Gbook.Base.Diagnostics.HealthCheckListener">
+            <summary>ヘルスチェックのためのトレースリスナーを提供します。</summary>
+        </member>
+        <member name="M:Gbook.Base.Diagnostics.HealthCheckListener.WriteTrace(Gbook.Base.Diagnostics.ITraceFormatter,Gbook.Base.Diagnostics.TraceEvent)">
+            <summary>
+            トレースを書き込みます。
+            </summary>
+            <param name="traceFormatter">文字列化に使用するトレースフォーマッター</param>
+            <param name="traceEvent">出力を行うトレースイベント</param>
+        </member>
+        <member name="E:Gbook.Base.Diagnostics.HealthCheckListener.Tracing">
+            <summary>
+            トレースが発生したときに発行されるイベントです。
+            </summary>
+        </member>
+        <member name="T:Gbook.Base.Diagnostics.MutexLocalFileListener">
+            <summary>
+            ローカルのテキストファイルとして出力されるリスナーを提供します。
+            このリスナーは、複数プロセスの排他制御に対応しています。
+            </summary>
+        </member>
+        <member name="T:Gbook.Base.Diagnostics.LocalFileListener">
+            <summary>
+            ローカルのテキストファイルとして出力されるリスナーを提供します。
+            このリスナーは、複数プロセスの排他制御に対応していません。複数プロセスの排他制御を行いたい場合は、
+            このリスナーの代わりに <see cref="T:Gbook.Base.Diagnostics.MutexLocalFileListener"/> の使用を検討してください。
+            </summary>
+        </member>
+        <member name="F:Gbook.Base.Diagnostics.LocalFileListener.FileNameTemplate">
+            <summary>
+            ファイル名のテンプレートです。
+            このクラスのコンストラクタで設定されます。
+            また、派生クラスのコンストラクタ本体で設定しなおされることがあります。
+            </summary>
+        </member>
+        <member name="F:Gbook.Base.Diagnostics.LocalFileListener.LastWriteDateTime">
+            <summary>
+            最後にログを書き込んだ日時を表します。
+            ログを書き込むたびに設定しなおされます。
+            </summary>
+        </member>
+        <member name="F:Gbook.Base.Diagnostics.LocalFileListener.Writer">
+            <summary>
+            ファイル書き込み先です。
+            ファイルローリングが発生したときに設定しなおされます。
+            </summary>
+        </member>
+        <member name="F:Gbook.Base.Diagnostics.LocalFileListener.FileRolling">
+            <summary>
+            ファイルローリングのための機能を提供します。
+            ログを最初に書き込むタイミングで設定しなおされます(遅延初期化)。
+            </summary>
+        </member>
+        <member name="M:Gbook.Base.Diagnostics.LocalFileListener.#ctor(System.String)">
+            <summary>
+            パスを含むファイル名を指定してオブジェクトを初期化します。
+            </summary>
+            <param name="fileNameTemplate">パスを含むファイル名</param>
+        </member>
+        <member name="M:Gbook.Base.Diagnostics.LocalFileListener.#ctor(System.Object)">
+            <summary>
+            パスを含むファイル名を指定してオブジェクトを初期化します。
+            ただし、パス生成時に例外が発生した場合は、その例外を受け取ります。
+            </summary>
+            <param name="fileNameTemplateOrException">パスを含むファイル名もしくはパス生成時に発生した例外オブジェクト</param>
+        </member>
+        <member name="M:Gbook.Base.Diagnostics.LocalFileListener.GetSupportedAttributes">
+            <summary>
+            トレース リスナーによってサポートされるカスタム属性を取得します。
+            </summary>
+            <returns>トレース リスナーによってサポートされるカスタム属性の名前を付ける文字列配列。カスタム属性がない場合は null 参照</returns>
+        </member>
+        <member name="M:Gbook.Base.Diagnostics.LocalFileListener.WriteTrace(Gbook.Base.Diagnostics.ITraceFormatter,Gbook.Base.Diagnostics.TraceEvent)">
+            <summary>
+            トレースを書き込みます。
+            </summary>
+            <param name="traceFormatter">文字列化に使用するトレースフォーマッター</param>
+            <param name="traceEvent">出力を行うトレースイベント</param>
+        </member>
+        <member name="M:Gbook.Base.Diagnostics.LocalFileListener.FlushCore">
+            <summary>
+            ストリームをフラッシュします。
+            </summary>
+        </member>
+        <member name="M:Gbook.Base.Diagnostics.LocalFileListener.CreateDirectryIfNotExists(System.String)">
+            <summary>
+            指定されたディレクトリが存在しなかった場合のみ指定されたディレクトリを作成します。
+            </summary>
+            <param name="dirPath">ディレクトリのパス</param>
+        </member>
+        <member name="M:Gbook.Base.Diagnostics.LocalFileListener.IsValidStreamSize">
+            <summary>
+            ファイルのサイズを検証します。
+            </summary>
+            <returns>ファイルのサイズがMaxSizeより小さい場合はtrue、MaxSize以上の場合はfalse</returns>
+        </member>
+        <member name="M:Gbook.Base.Diagnostics.LocalFileListener.IsDateChanged(System.DateTime)">
+            <summary>
+            LastWriteDateTimeをDateFormatで文字列化した値と現在日時をDateFormatで文字列化した値が異なるかどうかを示す値を返します。
+            既定では、LastWriteDateTimeと現在日時の日付が異なるかどうかを示す値を返します。
+            </summary>
+            <param name="now">現在日時</param>
+            <returns>DateFormatで指定したフォーマット情報でのLastWriteDateTimeと現在日時が異なる場合はtrue、同じ場合はfalse</returns>
+        </member>
+        <member name="M:Gbook.Base.Diagnostics.LocalFileListener.CloseCore">
+            <summary>
+            リソースを解放します。
+            </summary>
+        </member>
+        <member name="P:Gbook.Base.Diagnostics.LocalFileListener.Encoding">
+            <summary>
+            テキストファイルの出力に使用されるエンコーディングを取得します。
+            </summary>
+        </member>
+        <member name="P:Gbook.Base.Diagnostics.LocalFileListener.DatePlaceHolder">
+            <summary>
+            パスを含むファイル名に使用される日付のプレースホルダ―を取得します。
+            </summary>
+        </member>
+        <member name="P:Gbook.Base.Diagnostics.LocalFileListener.DateFormat">
+            <summary>
+            日付の書式を取得します。
+            </summary>
+        </member>
+        <member name="P:Gbook.Base.Diagnostics.LocalFileListener.VersionPlaceHolder">
+            <summary>
+            パスを含むファイル名に使用されるバージョンのプレースホルダ―を取得します。
+            </summary>
+        </member>
+        <member name="P:Gbook.Base.Diagnostics.LocalFileListener.VersionFormat">
+            <summary>
+            バージョンの書式を取得します。
+            </summary>
+        </member>
+        <member name="P:Gbook.Base.Diagnostics.LocalFileListener.MaxSize">
+            <summary>
+            1つのテキストファイルに書き込まれる最大ファイルサイズを取得します。
+            </summary>
+        </member>
+        <member name="P:Gbook.Base.Diagnostics.LocalFileListener.MachineNamePlaceHolder">
+            <summary>
+            パスを含むファイル名に使用されるマシン名のプレースホルダ―を取得します。
+            </summary>
+        </member>
+        <member name="P:Gbook.Base.Diagnostics.LocalFileListener.PidFormat">
+            <summary>
+            プロセスIDの書式を取得します。
+            </summary>
+        </member>
+        <member name="P:Gbook.Base.Diagnostics.LocalFileListener.PidPlaceHolder">
+            <summary>
+            プロセスIDのプレースホルダ―を取得します。
+            </summary>
+        </member>
+        <member name="M:Gbook.Base.Diagnostics.MutexLocalFileListener.#ctor(System.String)">
+            <summary>
+            パスを含むファイル名を指定してオブジェクトを初期化します。
+            </summary>
+            <param name="fileNameTemplate">パスを含むファイル名</param>
+        </member>
+        <member name="M:Gbook.Base.Diagnostics.MutexLocalFileListener.#ctor(System.Object)">
+            <summary>
+            パスを含むファイル名を指定してオブジェクトを初期化します。
+            ただし、パス生成時に例外が発生した場合は、その例外を受け取ります。
+            </summary>
+            <param name="fileNameTemplateOrException">パスを含むファイル名もしくはパス生成時に発生した例外オブジェクト</param>
+        </member>
+        <member name="M:Gbook.Base.Diagnostics.MutexLocalFileListener.WriteTrace(Gbook.Base.Diagnostics.ITraceFormatter,Gbook.Base.Diagnostics.TraceEvent)">
+            <summary>
+            トレースを書き込みます。
+            </summary>
+            <param name="traceFormatter">文字列化に使用するトレースフォーマッター</param>
+            <param name="traceEvent">出力を行うトレースイベント</param>
+        </member>
+        <member name="M:Gbook.Base.Diagnostics.MutexLocalFileListener.CloseCore">
+            <summary>
+            リソースを解放します。
+            </summary>
+        </member>
+        <member name="T:Gbook.Base.Diagnostics.LogicalCallContextEvent`1">
+            <summary>
+            論理的な呼び出しコンテキストによるイベントを提供します。
+            </summary>
+            <typeparam name="TEventArgs">イベントの引数型</typeparam>
+        </member>
+        <member name="M:Gbook.Base.Diagnostics.LogicalCallContextEvent`1.#ctor">
+            <summary>
+            オブジェクトを初期化します。
+            </summary>
+        </member>
+        <member name="M:Gbook.Base.Diagnostics.LogicalCallContextEvent`1.AddHandler(System.EventHandler{`0})">
+            <summary>
+            現在の論理的な呼び出しコンテキストに対してイベントハンドラを追加します。
+            </summary>
+            <param name="handler">追加するイベントハンドラ</param>
+        </member>
+        <member name="M:Gbook.Base.Diagnostics.LogicalCallContextEvent`1.RemoveHandler(System.EventHandler{`0})">
+            <summary>
+            現在の論理的な呼び出しコンテキストからイベントハンドラを消去します。
+            </summary>
+            <param name="handler">消去するイベントハンドラ</param>
+        </member>
+        <member name="M:Gbook.Base.Diagnostics.LogicalCallContextEvent`1.Trigger(`0)">
+            <summary>
+            現在の論理的な呼び出しコンテキストに対してイベントを発行します。
+            </summary>
+            <param name="arg">イベントの引数</param>
+        </member>
+        <member name="T:Gbook.Base.Diagnostics.Properties.Resources">
+            <summary>
+              ローカライズされた文字列などを検索するための、厳密に型指定されたリソース クラスです。
+            </summary>
+        </member>
+        <member name="P:Gbook.Base.Diagnostics.Properties.Resources.ResourceManager">
+            <summary>
+              このクラスで使用されているキャッシュされた ResourceManager インスタンスを返します。
+            </summary>
+        </member>
+        <member name="P:Gbook.Base.Diagnostics.Properties.Resources.Culture">
+            <summary>
+              厳密に型指定されたこのリソース クラスを使用して、すべての検索リソースに対し、
+              現在のスレッドの CurrentUICulture プロパティをオーバーライドします。
+            </summary>
+        </member>
+        <member name="P:Gbook.Base.Diagnostics.Properties.Resources.Formatter_ApplicationName">
+            <summary>
+              Application Name に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Gbook.Base.Diagnostics.Properties.Resources.Formatter_Datetime">
+            <summary>
+              Datetime に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Gbook.Base.Diagnostics.Properties.Resources.Formatter_Description">
+            <summary>
+              Description に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Gbook.Base.Diagnostics.Properties.Resources.Formatter_Exception">
+            <summary>
+              Exception に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Gbook.Base.Diagnostics.Properties.Resources.Formatter_InternalDeviceId">
+            <summary>
+              Internal Device ID に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Gbook.Base.Diagnostics.Properties.Resources.Formatter_InternalId">
+            <summary>
+              Internal ID に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Gbook.Base.Diagnostics.Properties.Resources.Formatter_Level">
+            <summary>
+              Level に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Gbook.Base.Diagnostics.Properties.Resources.Formatter_MachineName">
+            <summary>
+              Machine Name に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Gbook.Base.Diagnostics.Properties.Resources.Formatter_None">
+            <summary>
+              (-) に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Gbook.Base.Diagnostics.Properties.Resources.Formatter_OpelogCarSerialNo">
+            <summary>
+              Car Serial No に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Gbook.Base.Diagnostics.Properties.Resources.Formatter_OpelogDcmSerialNo">
+            <summary>
+              DCM Serial No に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Gbook.Base.Diagnostics.Properties.Resources.Formatter_OpelogDcmTelephoneNumber">
+            <summary>
+              DCM Telephone Number に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Gbook.Base.Diagnostics.Properties.Resources.Formatter_OpelogResponseContentType">
+            <summary>
+              Content-Type に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Gbook.Base.Diagnostics.Properties.Resources.Formatter_OpelogResponseDuration">
+            <summary>
+              Duration に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Gbook.Base.Diagnostics.Properties.Resources.Formatter_OpelogResponseStatusCode">
+            <summary>
+              Status Code に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Gbook.Base.Diagnostics.Properties.Resources.Formatter_OpelogSecurityChipId">
+            <summary>
+              SecurityChip ID に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Gbook.Base.Diagnostics.Properties.Resources.Formatter_OpelogUserAgent">
+            <summary>
+              User-Agent に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Gbook.Base.Diagnostics.Properties.Resources.Formatter_Request">
+            <summary>
+              Request に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Gbook.Base.Diagnostics.Properties.Resources.Formatter_Summary">
+            <summary>
+              Summary に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Gbook.Base.Diagnostics.Properties.Resources.Formatter_ThreadId">
+            <summary>
+              Thread ID に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="T:Gbook.Base.Diagnostics.ToStringExtensions">
+            <summary>
+            文字列化の拡張メソッドを提供します。
+            </summary>
+        </member>
+        <member name="M:Gbook.Base.Diagnostics.ToStringExtensions.ToLongExceptionString(System.Exception)">
+            <summary>
+            例外の長い文字列化を行います。
+            </summary>
+            <param name="ex">文字列化を行う例外</param>
+            <returns>文字列化された例外</returns>
+        </member>
+        <member name="T:Gbook.Base.Diagnostics.TraceEvent">
+            <summary>
+            トレースの情報を提供します。
+            </summary>
+        </member>
+        <member name="M:Gbook.Base.Diagnostics.TraceEvent.#ctor(System.Diagnostics.TraceEventCache,System.String,System.Diagnostics.TraceEventType,System.Int32,System.Object)">
+            <summary>
+            オブジェクトを初期化します。
+            </summary>
+            <param name="eventCache">スレッドおよびプロセスに固有のトレース イベント データ</param>
+            <param name="source">ソースの名前</param>
+            <param name="eventType">トレースを発生させたイベントのタイプを指定する TraceEventType 値</param>
+            <param name="id">トレースイベントの ID を取得します。</param>
+            <param name="data">トレースデータを取得します。</param>
+        </member>
+        <member name="M:Gbook.Base.Diagnostics.TraceEvent.ToString">
+            <summary>
+            文字列化します。
+            </summary>
+            <returns>文字列化された結果</returns>
+        </member>
+        <member name="P:Gbook.Base.Diagnostics.TraceEvent.EventCache">
+            <summary>
+            スレッドおよびプロセスに固有のトレース イベント データを取得します。
+            </summary>
+        </member>
+        <member name="P:Gbook.Base.Diagnostics.TraceEvent.Source">
+            <summary>
+            ソースの名前を取得します。
+            </summary>
+        </member>
+        <member name="P:Gbook.Base.Diagnostics.TraceEvent.EventType">
+            <summary>
+            トレースを発生させたイベントのタイプを指定する TraceEventType 値の 1 つを取得します。
+            </summary>
+        </member>
+        <member name="P:Gbook.Base.Diagnostics.TraceEvent.Id">
+            <summary>
+            トレースイベントの ID を取得します。
+            </summary>
+        </member>
+        <member name="P:Gbook.Base.Diagnostics.TraceEvent.Data">
+            <summary>
+            トレースデータを取得します。
+            </summary>
+        </member>
+        <member name="T:Gbook.Base.Diagnostics.ITraceFormatter">
+            <summary>
+            トレースを文字列化するためのインターフェースです。
+            </summary>
+        </member>
+        <member name="M:Gbook.Base.Diagnostics.ITraceFormatter.Format(Gbook.Base.Diagnostics.TraceEvent)">
+            <summary>
+            指定されたトレースイベントを文字列化します。
+            </summary>
+            <param name="traceEvent">文字列化するトレースイベント</param>
+            <returns>文字列化されたトレース</returns>
+        </member>
+        <member name="T:Gbook.Base.Diagnostics.DefaultTraceFormatter">
+            <summary>
+            トレースフォーマッターの既定の実装を提供します。
+            </summary>
+        </member>
+        <member name="M:Gbook.Base.Diagnostics.DefaultTraceFormatter.Format(Gbook.Base.Diagnostics.TraceEvent)">
+            <summary>
+            指定されたトレースイベントを ToString で文字列化します。
+            </summary>
+            <param name="traceEvent"></param>
+            <returns>文字列化されたトレース</returns>
+        </member>
+        <member name="T:Gbook.Base.Diagnostics.IEnvironment">
+            <summary>
+            トレースフォーマッターが環境の情報を取得するためのインターフェースを提供します。
+            </summary>
+        </member>
+        <member name="M:Gbook.Base.Diagnostics.IEnvironment.GetThreadId(System.Diagnostics.TraceEventCache)">
+            <summary>
+            ログ出力時のスレッドIDを取得します。
+            </summary>
+            <param name="cache">取得元のキャッシュ情報</param>
+            <returns>ログ出力時のスレッドID</returns>
+        </member>
+        <member name="P:Gbook.Base.Diagnostics.IEnvironment.MachineName">
+            <summary>
+            マシン名を取得します。
+            </summary>
+        </member>
+        <member name="T:Gbook.Base.Diagnostics.LogItemKeys">
+            <summary>
+            ログを出力する際の共通項目のキーを提供します。
+            </summary>
+        </member>
+        <member name="F:Gbook.Base.Diagnostics.LogItemKeys.ApplicationName">
+            <summary>
+            アプリケーション名
+            </summary>
+        </member>
+        <member name="F:Gbook.Base.Diagnostics.LogItemKeys.RequestMethod">
+            <summary>
+            リクエストメソッド
+            </summary>
+        </member>
+        <member name="F:Gbook.Base.Diagnostics.LogItemKeys.RequestUrl">
+            <summary>
+            リクエスト URL
+            </summary>
+        </member>
+        <member name="F:Gbook.Base.Diagnostics.LogItemKeys.InternalDeviceId">
+            <summary>
+            内部デバイス ID
+            </summary>
+        </member>
+        <member name="T:Gbook.Base.Diagnostics.OpelogLogItemKeys">
+            <summary>
+            オペログを出力する際の共通項目のキーを提供します。
+            </summary>
+        </member>
+        <member name="F:Gbook.Base.Diagnostics.OpelogLogItemKeys.CarSerialNo">
+            <summary>
+            車載シリアル NO
+            </summary>
+        </member>
+        <member name="F:Gbook.Base.Diagnostics.OpelogLogItemKeys.DcmTelephoneNumber">
+            <summary>
+            DCM 電話番号
+            </summary>
+        </member>
+        <member name="F:Gbook.Base.Diagnostics.OpelogLogItemKeys.SecurityChipId">
+            <summary>
+            セキュリティチップシリアル NO
+            </summary>
+        </member>
+        <member name="F:Gbook.Base.Diagnostics.OpelogLogItemKeys.DcmSerialNo">
+            <summary>
+            DCM シリアル NO
+            </summary>
+        </member>
+        <member name="F:Gbook.Base.Diagnostics.OpelogLogItemKeys.QueryParams">
+            <summary>
+            クエリパラメータ
+            </summary>
+        </member>
+        <member name="F:Gbook.Base.Diagnostics.OpelogLogItemKeys.UserAgent">
+            <summary>
+            ユーザーエージェント
+            </summary>
+        </member>
+        <member name="F:Gbook.Base.Diagnostics.OpelogLogItemKeys.ResponseStatusCode">
+            <summary>
+            レスポンスステータスコード
+            </summary>
+        </member>
+        <member name="F:Gbook.Base.Diagnostics.OpelogLogItemKeys.ResponseContentType">
+            <summary>
+            レスポンスコンテントタイプ
+            </summary>
+        </member>
+        <member name="F:Gbook.Base.Diagnostics.OpelogLogItemKeys.ResponseDuration">
+            <summary>
+            リクエストとレスポンスの時間差
+            </summary>
+        </member>
+        <member name="T:Gbook.Base.Diagnostics.MessageFormatter">
+            <summary>
+            トラブル窓口のための書式化機能を提供します。
+            </summary>
+        </member>
+        <member name="M:Gbook.Base.Diagnostics.MessageFormatter.#ctor">
+            <summary>
+            MessageFormatterを生成します。
+            </summary>
+        </member>
+        <member name="M:Gbook.Base.Diagnostics.MessageFormatter.Format(Gbook.Base.Diagnostics.TraceEvent)">
+            <summary>
+            書式化を行います。
+            </summary>
+            <param name="traceEvent"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Gbook.Base.Diagnostics.AzureLogFormatter">
+            <summary>
+            Azureのトレースログのための書式化機能を提供します。
+            </summary>
+        </member>
+        <member name="T:Gbook.Base.Diagnostics.DetailFormatter">
+            <summary>
+            詳細なトレースログのための書式化機能を提供します。
+            </summary>
+        </member>
+        <member name="M:Gbook.Base.Diagnostics.DetailFormatter.#ctor">
+            <summary>
+            DetailFormatterを生成します。
+            </summary>
+        </member>
+        <member name="M:Gbook.Base.Diagnostics.DetailFormatter.Format(Gbook.Base.Diagnostics.TraceEvent)">
+            <summary>
+            書式化を行います。
+            </summary>
+            <param name="traceEvent"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Gbook.Base.Diagnostics.TraceLogFormatterBase">
+            <summary>
+            トレースログの書式化機能のベースクラスです。
+            </summary>
+        </member>
+        <member name="M:Gbook.Base.Diagnostics.TraceLogFormatterBase.#ctor">
+            <summary>
+            TraceLogFormatterBaseを生成します。
+            </summary>
+        </member>
+        <member name="M:Gbook.Base.Diagnostics.TraceLogFormatterBase.Format(Gbook.Base.Diagnostics.TraceEvent)">
+            <summary>
+            トレースイベントを文字列化します。
+            </summary>
+            <param name="traceEvent">トレースイベント</param>
+            <returns>文字列化されたトレースイベント</returns>
+        </member>
+        <member name="M:Gbook.Base.Diagnostics.TraceLogFormatterBase.RetrieveItems(Gbook.Base.Diagnostics.TraceEvent)">
+            <summary>
+            トレースイベントの項目を収集し、キーバリューペアのリストにします。
+            </summary>
+            <param name="traceEvent">トレースイベント</param>
+            <returns>トレースイベントの項目</returns>
+        </member>
+        <member name="T:Gbook.Base.Diagnostics.TraceLogFormatter">
+            <summary>
+            トレースログのための書式化機能を提供します。(複数行)
+            </summary>
+        </member>
+        <member name="M:Gbook.Base.Diagnostics.TraceLogFormatter.Format(Gbook.Base.Diagnostics.TraceEvent)">
+            <summary>
+            書式化を行います。
+            </summary>
+            <param name="traceEvent"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Gbook.Base.Diagnostics.OneLineTraceLogFormatter">
+            <summary>
+            トレースログのための書式化機能を提供します。(1行)
+            </summary>
+        </member>
+        <member name="M:Gbook.Base.Diagnostics.OneLineTraceLogFormatter.Format(Gbook.Base.Diagnostics.TraceEvent)">
+            <summary>
+            書式化を行います。
+            </summary>
+            <param name="traceEvent"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Gbook.Base.Diagnostics.OperationLogFormatter">
+            <summary>
+            オペログのための書式化機能を提供します。
+            </summary>
+        </member>
+        <member name="M:Gbook.Base.Diagnostics.OperationLogFormatter.#ctor">
+            <summary>
+            OperationLogFormatterを生成します。
+            </summary>
+        </member>
+        <member name="M:Gbook.Base.Diagnostics.OperationLogFormatter.Format(Gbook.Base.Diagnostics.TraceEvent)">
+            <summary>
+            書式化を行います。
+            </summary>
+            <param name="traceEvent"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Gbook.Base.Diagnostics.TraceIdentity">
+            <summary>
+            発生したトレースを識別するためのクラスです。
+            </summary>
+        </member>
+        <member name="F:Gbook.Base.Diagnostics.TraceIdentity.Null">
+            <summary>
+            トレースがされなかったという結果を表す結果を取得します。
+            </summary>
+        </member>
+        <member name="M:Gbook.Base.Diagnostics.TraceIdentity.TryGetSource(System.String@)">
+            <summary>
+            ソースの名前を取得します。結果は引数 source に設定され、 true が返却されます。
+            トレースが出力されなかった場合は、引数 source に default(string) が設定され、 false が返却されます。
+            </summary>
+            <param name="source">結果を受け取るパラメータ</param>
+            <returns>結果を受け取ったかどうかを示す値</returns>
+        </member>
+        <member name="M:Gbook.Base.Diagnostics.TraceIdentity.TryGetEventType(System.Diagnostics.TraceEventType@)">
+            <summary>
+            トレースを発生させたイベントのタイプを指定する TraceEventType 値の 1 つを取得します。結果は引数 eventType に設定され、 true が返却されます。
+            トレースが出力されなかった場合は、引数 eventType に default(TraceEventType) が設定され、 false が返却されます。
+            </summary>
+            <param name="eventType">結果を受け取るパラメータ</param>
+            <returns>結果を受け取ったかどうかを示す値</returns>
+        </member>
+        <member name="M:Gbook.Base.Diagnostics.TraceIdentity.TryGetId(System.Int32@)">
+            <summary>
+            トレースイベントの ID を取得します。結果は引数 id に設定され、 true が返却されます。
+            トレースが出力されなかった場合は、引数 id に default(int) が設定され、 false が返却されます。
+            </summary>
+            <param name="id">結果を受け取るパラメータ</param>
+            <returns>結果を受け取ったかどうかを示す値</returns>
+        </member>
+        <member name="M:Gbook.Base.Diagnostics.TraceIdentity.TryGetInternalId(System.Guid@)">
+            <summary>
+            トレースの内部 ID を取得します。結果は引数 internalId に設定され、 true が返却されます。
+            トレースが出力されなかった場合は、引数 internalId に default(Guid) が設定され、 false が返却されます。
+            </summary>
+            <param name="internalId">結果を受け取るパラメータ</param>
+            <returns>結果を受け取ったかどうかを示す値</returns>
+        </member>
+        <member name="M:Gbook.Base.Diagnostics.TraceIdentity.#ctor">
+            <summary>
+            トレース識別のオブジェクトを生成します。
+            </summary>
+        </member>
+        <member name="M:Gbook.Base.Diagnostics.TraceIdentity.#ctor(System.String,System.Diagnostics.TraceEventType,System.Int32,System.Guid)">
+            <summary>
+            トレース識別のオブジェクトを生成します。
+            </summary>
+            <param name="eventType"></param>
+            <param name="id"></param>
+            <param name="internalId"></param>
+            <param name="source"></param>
+        </member>
+        <member name="P:Gbook.Base.Diagnostics.TraceIdentity.IsNull">
+            <summary>
+            トレースの結果がないかどうか値を取得します。
+            </summary>
+        </member>
+        <member name="P:Gbook.Base.Diagnostics.TraceIdentity.Source">
+            <summary>
+            ソースの名前を取得します。
+            </summary>
+        </member>
+        <member name="P:Gbook.Base.Diagnostics.TraceIdentity.SourceOrException">
+            <summary>
+            ソースの名前を取得します。
+            </summary>
+            <exception cref="T:System.InvalidOperationException">トレースが出力されなかった場合、はこの例外が発生します。</exception>
+        </member>
+        <member name="P:Gbook.Base.Diagnostics.TraceIdentity.EventType">
+            <summary>
+            トレースを発生させたイベントのタイプを指定する TraceEventType 値の 1 つを取得します。
+            </summary>
+        </member>
+        <member name="P:Gbook.Base.Diagnostics.TraceIdentity.EventTypeOrException">
+            <summary>
+            トレースを発生させたイベントのタイプを指定する TraceEventType 値の 1 つを取得します。
+            </summary>
+            <exception cref="T:System.InvalidOperationException">トレースが出力されなかった場合、はこの例外が発生します。</exception>
+        </member>
+        <member name="P:Gbook.Base.Diagnostics.TraceIdentity.Id">
+            <summary>
+            トレースイベントの ID を取得します。
+            </summary>
+        </member>
+        <member name="P:Gbook.Base.Diagnostics.TraceIdentity.IdOrException">
+            <summary>
+            トレースイベントの ID を取得します。
+            </summary>
+            <exception cref="T:System.InvalidOperationException">トレースが出力されなかった場合、はこの例外が発生します。</exception>
+        </member>
+        <member name="P:Gbook.Base.Diagnostics.TraceIdentity.InternalId">
+            <summary>
+            トレースの内部 ID を取得します。
+            </summary>
+        </member>
+        <member name="P:Gbook.Base.Diagnostics.TraceIdentity.InternalIdOrException">
+            <summary>
+            トレースの内部 ID を取得します。
+            </summary>
+            <exception cref="T:System.InvalidOperationException">トレースが出力されなかった場合、はこの例外が発生します。</exception>
+        </member>
+        <member name="T:Gbook.Base.Diagnostics.NullTraceIdentity">
+            <summary>
+            発生したトレースを識別するためのクラスです。
+            トレースは、出力されなかったことを表します。
+            </summary>
+        </member>
+        <member name="M:Gbook.Base.Diagnostics.NullTraceIdentity.#ctor">
+            <summary>
+            トレース識別のオブジェクトを生成します。
+            </summary>
+        </member>
+        <member name="T:Gbook.Base.Diagnostics.TraceListenerMethod">
+            <summary>
+            トレースリスナーで定義されている公開メソッドを表す列挙型です。
+            </summary>
+        </member>
+        <member name="F:Gbook.Base.Diagnostics.TraceListenerMethod.Unknown">
+            <summary>
+            不明な場合を表します。通常この列挙子が指定されることはありません。
+            </summary>
+        </member>
+        <member name="F:Gbook.Base.Diagnostics.TraceListenerMethod.WriteTrace">
+            <summary>
+            WriteTraceメソッドで例外が発生したことを示します。
+            </summary>
+        </member>
+        <member name="F:Gbook.Base.Diagnostics.TraceListenerMethod.Flush">
+            <summary>
+            Flushメソッドで例外が発生したことを示します。
+            </summary>
+        </member>
+        <member name="F:Gbook.Base.Diagnostics.TraceListenerMethod.Close">
+            <summary>
+            Closeメソッドで例外が発生したことを示します。
+            </summary>
+        </member>
+        <member name="T:Gbook.Base.Diagnostics.TraceListenerExceptionArgs">
+            <summary>
+            トレースリスナーが例外を投げたときに発生するイベントの引数です。
+            </summary>
+        </member>
+        <member name="M:Gbook.Base.Diagnostics.TraceListenerExceptionArgs.#ctor(System.Diagnostics.TraceListener,Gbook.Base.Diagnostics.TraceListenerMethod,System.Object,System.Exception)">
+            <summary>
+            オブジェクトを初期化します。
+            </summary>
+            <param name="listener">例外をなげたトレースリスナー</param>
+            <param name="method">例外をなげたトレースリスナーの公開メソッド</param>
+            <param name="traceDataOrNull">(存在すれば)書き込もうとしていたデータ</param>
+            <param name="exn">投げられた例外</param>
+        </member>
+        <member name="M:Gbook.Base.Diagnostics.TraceListenerExceptionArgs.#ctor(System.Diagnostics.TraceListener,System.Exception)">
+            <summary>
+            オブジェクトを初期化します。
+            </summary>
+            <param name="listener">例外をなげたトレースリスナー</param>
+            <param name="exn">投げられた例外</param>
+        </member>
+        <member name="P:Gbook.Base.Diagnostics.TraceListenerExceptionArgs.Exception">
+            <summary>
+            投げられた例外を取得します。
+            </summary>
+        </member>
+        <member name="P:Gbook.Base.Diagnostics.TraceListenerExceptionArgs.TraceListener">
+            <summary>
+            例外をなげたトレースリスナーを取得します。
+            </summary>
+        </member>
+        <member name="P:Gbook.Base.Diagnostics.TraceListenerExceptionArgs.Method">
+            <summary>
+            例外をなげたトレースリスナーの公開メソッドを取得します。
+            </summary>
+        </member>
+        <member name="P:Gbook.Base.Diagnostics.TraceListenerExceptionArgs.TraceDataOrNull">
+            <summary>
+            例外を投げたトレースリスナーに書き込もうとしていたデータを取得します。
+            トレースリスナーへの書き込み段階以外や、書き込みデータ構築前に例外が発生した場合はこのプロパティはnullを返します。
+            通常は、このプロパティではなくFormattedTraceDataOrNullを使ってください。
+            </summary>
+        </member>
+        <member name="P:Gbook.Base.Diagnostics.TraceListenerExceptionArgs.FormattedTraceDataOrNull">
+            <summary>
+            例外を投げたトレースリスナーに書き込もうとしていたデータを取得します。
+            トレースリスナーへの書き込み段階以外や、書き込みデータ構築前に例外が発生した場合はこのプロパティはnullを返します。
+            </summary>
+        </member>
+        <member name="T:Gbook.Base.Diagnostics.TraceListeners">
+            <summary>
+            トレースリスナーに関する操作を提供します。
+            </summary>
+        </member>
+        <member name="M:Gbook.Base.Diagnostics.TraceListeners.GetReceivedExceptionHandler">
+            <summary>
+            テスト用のメソッドです。テスト以外に使用しないでください。
+            </summary>
+        </member>
+        <member name="M:Gbook.Base.Diagnostics.TraceListeners.ClearReceivedExceptionHandlers">
+            <summary>
+            テスト用のメソッドです。テスト以外に使用しないでください。
+            </summary>
+        </member>
+        <member name="M:Gbook.Base.Diagnostics.TraceListeners.SendException(System.Diagnostics.TraceListener,Gbook.Base.Diagnostics.TraceListenerMethod,System.Object,System.Exception)">
+            <summary>
+            トレースリスナーが例外を投げたときに通知を行います。
+            </summary>
+            <param name="listener">例外を投げたトレースリスナー</param>
+            <param name="method">例外をなげたトレースリスナーの公開メソッド</param>
+            <param name="traceDataOrNull">(存在すれば)書き込もうとしていたデータ</param>
+            <param name="ex">投げられた例外</param>
+        </member>
+        <member name="E:Gbook.Base.Diagnostics.TraceListeners.ReceivedException">
+            <summary>
+            トレースリスナーの処理中に例外が投げられた時に発行されるイベントです。
+            </summary>
+        </member>
+        <member name="T:Gbook.Base.Diagnostics.TraceListenerHandlerException">
+            <summary>
+            TraceListners.ReceivedExceptionに登録されたイベントハンドラが例外を投げたことを表す例外です。
+            この例外のInnerExceptionには、イベントハンドラで投げられた例外が格納されています。
+            </summary>
+        </member>
+        <member name="T:Gbook.Base.Diagnostics.TraceSourceExceptionArgs">
+            <summary>
+            トレースソースが例外を投げたときに発生するイベントの引数です。
+            </summary>
+        </member>
+        <member name="M:Gbook.Base.Diagnostics.TraceSourceExceptionArgs.#ctor(System.Diagnostics.TraceSource,System.Exception)">
+            <summary>
+            オブジェクトを初期化します。
+            </summary>
+            <param name="traceSource">例外をなげたトレースソース</param>
+            <param name="exn">投げられた例外</param>
+        </member>
+        <member name="P:Gbook.Base.Diagnostics.TraceSourceExceptionArgs.Exception">
+            <summary>
+            投げられた例外を取得します。
+            </summary>
+        </member>
+        <member name="P:Gbook.Base.Diagnostics.TraceSourceExceptionArgs.TraceSource">
+            <summary>
+            例外をなげたトレースソースを取得します。
+            </summary>
+        </member>
+        <member name="T:Gbook.Base.Diagnostics.KeyValuePairListExtensions">
+            <summary>
+            KeyValuePairのリストに対しての拡張機能を提供します。
+            </summary>
+        </member>
+        <member name="M:Gbook.Base.Diagnostics.KeyValuePairListExtensions.Add``2(System.Collections.Generic.IList{System.Collections.Generic.KeyValuePair{``0,``1}},``0,``1)">
+            <summary>
+            指定したキーと値を追加します。
+            </summary>
+            <typeparam name="TKey"></typeparam>
+            <typeparam name="TValue"></typeparam>
+            <param name="list"></param>
+            <param name="key"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:Gbook.Base.Diagnostics.KeyValuePairListExtensions.HasKey``2(System.Collections.Generic.IReadOnlyList{System.Collections.Generic.KeyValuePair{``0,``1}},``0)">
+            <summary>
+            指定したキーが存在するかどうかの値を取得します。
+            </summary>
+            <typeparam name="TKey"></typeparam>
+            <typeparam name="TValue"></typeparam>
+            <param name="list"></param>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Gbook.Base.Diagnostics.KeyValuePairListExtensions.GetOrElse``2(System.Collections.Generic.IReadOnlyList{System.Collections.Generic.KeyValuePair{``0,``1}},``0,``1)">
+            <summary>
+            指定したキーに紐づく値を取得します。指定したキーがない場合はelseValueを取得します。
+            </summary>
+            <typeparam name="TKey"></typeparam>
+            <typeparam name="TValue"></typeparam>
+            <param name="list"></param>
+            <param name="key"></param>
+            <param name="elseValue"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Gbook.Base.Diagnostics.LogItems">
+            <summary>
+            ログ項目のリストを管理するクラスです。
+            </summary>
+        </member>
+        <member name="M:Gbook.Base.Diagnostics.LogItems.Add(System.String,System.Object)">
+            <summary>
+            指定されたログ項目を追加します。
+            </summary>
+            <param name="key">ログ項目のキー名</param>
+            <param name="value">ログ項目の値</param>
+        </member>
+        <member name="M:Gbook.Base.Diagnostics.LogItems.Add(System.Collections.Generic.KeyValuePair{System.String,System.Object})">
+            <summary>
+            指定されたログ項目を追加します。
+            </summary>
+            <param name="item">ログ項目</param>
+        </member>
+        <member name="M:Gbook.Base.Diagnostics.LogItems.Clear">
+            <summary>
+            ログ項目の内容をすべて削除します。
+            このメソッドは、テストなどでログ項目をすべて削除したい場合に使用します。
+            </summary>
+        </member>
+        <member name="M:Gbook.Base.Diagnostics.LogItems.Remove(System.Collections.Generic.KeyValuePair{System.String,System.Object})">
+            <summary>
+            このメソッドは呼び出せません。
+            </summary>
+            <param name="item"></param>
+        </member>
+        <member name="M:Gbook.Base.Diagnostics.LogItems.RemoveIfExists(System.Collections.Generic.KeyValuePair{System.String,System.Object})">
+            <summary>
+            もし指定したログ項目が存在した場合、削除します。
+            </summary>
+            <param name="item">削除するログ項目</param>
+            <returns>削除に成功した場合は、true, 失敗した場合(存在しなかった場合)はfalseを返します。</returns>
+        </member>
+        <member name="M:Gbook.Base.Diagnostics.LogItems.GetEnumerator">
+            <summary>
+            ログ項目を列挙するためのオブジェクトを取得します。
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Gbook.Base.Diagnostics.LogItems.System#Collections#IEnumerable#GetEnumerator">
+            <summary>
+            ログ項目を列挙するためのオブジェクトを取得します。
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Gbook.Base.Diagnostics.LogItems.Item(System.Int32)">
+            <summary>
+            指定されたインデックスのログ項目を取得します。
+            </summary>
+            <param name="index">インデックス</param>
+            <returns>ログ項目</returns>
+        </member>
+        <member name="P:Gbook.Base.Diagnostics.LogItems.Count">
+            <summary>
+            ログ項目の個数を取得します。
+            </summary>
+        </member>
+        <member name="T:Gbook.Base.Diagnostics.MethodName">
+            <summary>
+            メソッド名を表します。
+            </summary>
+        </member>
+        <member name="F:Gbook.Base.Diagnostics.MethodName.None">
+            <summary>
+            メソッド名を取得しなかったことを表すオブジェクトです。
+            </summary>
+        </member>
+        <member name="M:Gbook.Base.Diagnostics.MethodName.#ctor(System.String)">
+            <summary>
+            指定されたメソッド名で、オブジェクトを初期化します。
+            </summary>
+            <param name="value"></param>
+        </member>
+        <member name="P:Gbook.Base.Diagnostics.MethodName.Value">
+            <summary>
+            メソッド名を取得します。
+            メソッド名を取得してなかった場合に、このプロパティを呼び出すと例外(InvalidOperationException)が発生します。
+            </summary>
+            <exception cref="T:System.InvalidOperationException">Method Nameが無効ですが、メソッド名を読み取ろうとしました。</exception>
+        </member>
+        <member name="T:Gbook.Base.Diagnostics.TraceSources">
+            <summary>
+            トレースソースに関する操作を提供します。
+            </summary>
+        </member>
+        <member name="M:Gbook.Base.Diagnostics.TraceSources.HandleException(System.Diagnostics.TraceListener,System.Exception)">
+            <summary>
+            トレースリスナーが例外を投げたときに通知を行います。
+            </summary>
+            <param name="listener">例外を投げたトレースリスナー</param>
+            <param name="ex">投げられた例外</param>
+        </member>
+        <member name="M:Gbook.Base.Diagnostics.TraceSources.HandleException(System.Diagnostics.TraceListener,Gbook.Base.Diagnostics.TraceListenerMethod,System.Object,System.Exception)">
+            <summary>
+            トレースリスナーが例外を投げたときに通知を行います。
+            </summary>
+            <param name="listener">例外を投げたトレースリスナー</param>
+            <param name="method">例外をなげたトレースリスナーの公開メソッド</param>
+            <param name="traceDataOrNull">(存在すれば)書き込もうとしていたデータ</param>
+            <param name="ex">投げられた例外</param>
+        </member>
+        <member name="M:Gbook.Base.Diagnostics.TraceSources.GetReceivedExceptionHandler">
+            <summary>
+            テスト用のメソッドです。テスト以外に使用しないでください。
+            </summary>
+        </member>
+        <member name="M:Gbook.Base.Diagnostics.TraceSources.ClearReceivedExceptionHandlers">
+            <summary>
+            テスト用のメソッドです。テスト以外に使用しないでください。
+            </summary>
+        </member>
+        <member name="M:Gbook.Base.Diagnostics.TraceSources.SendException(System.Diagnostics.TraceSource,System.Exception)">
+            <summary>
+            トレースソースが例外を投げた時に通知を行います。
+            このメソッドはG-BOOKライブラリのカスタムツールが生成するコードから呼び出すために公開されています。
+            ユーザコードから直接呼び出すことはありません。
+            </summary>
+            <param name="source">例外を投げたトレースソース</param>
+            <param name="ex">投げられた例外</param>
+        </member>
+        <member name="M:Gbook.Base.Diagnostics.TraceSources.GetLogItems">
+            <summary>
+            現在の論理スレッドがもつトレースのログ項目の読み取りリストを取得します。
+            このメソッドはG-BOOKライブラリのカスタムツールが生成するコードから呼び出すために公開されています。
+            ユーザコードから直接呼び出すことはありません。
+            </summary>
+            <returns>ログ項目の読み取り専用リスト</returns>
+        </member>
+        <member name="M:Gbook.Base.Diagnostics.TraceSources.AddLogItem(System.String,System.Object)">
+            <summary>
+            現在の論理スレッドがもつトレースのログ項目のリストに指定されたログ項目を追加します。
+            </summary>
+            <param name="key">ログ項目のキー</param>
+            <param name="value">ログ項目の値</param>
+        </member>
+        <member name="M:Gbook.Base.Diagnostics.TraceSources.AddLogItemForSingleThread(System.String,System.Object)">
+            <summary>
+            現在の論理スレッドがもつトレースのログ項目のリストに指定されたログ項目を追加します。
+            このメソッドは、ロックを取得せず高速に追加を行いますが、競合を起こす可能性のある場合は使用しないでください。
+            </summary>
+            <param name="key">ログ項目のキー</param>
+            <param name="value">ログ項目の値</param>
+        </member>
+        <member name="M:Gbook.Base.Diagnostics.TraceSources.GetAdditionalLogItems">
+            <summary>
+            現在の論理スレッドがもつトレースの追加ログ項目の読み取りリストを取得します。
+            このメソッドはG-BOOKライブラリのカスタムツールが生成するコードから呼び出すために公開されています。
+            ユーザコードから直接呼び出すことはありません。
+            </summary>
+            <returns>追加ログ項目の読み取り専用リスト</returns>
+        </member>
+        <member name="M:Gbook.Base.Diagnostics.TraceSources.AddAdditionalLogItem(System.String,System.Object)">
+            <summary>
+            現在の論理スレッドがもつトレースの追加ログ項目のリストに指定された追加ログ項目を追加します。
+            </summary>
+            <param name="key">追加ログ項目のキー</param>
+            <param name="value">追加ログ項目の値</param>
+        </member>
+        <member name="M:Gbook.Base.Diagnostics.TraceSources.AddAdditionalLogItemForSingleThread(System.String,System.Object)">
+            <summary>
+            現在の論理スレッドがもつトレースの追加ログ項目のリストに指定された追加ログ項目を追加します。
+            このメソッドは、ロックを取得せず高速に追加を行いますが、競合を起こす可能性のある場合は使用しないでください。
+            </summary>
+            <param name="key">追加ログ項目のキー</param>
+            <param name="value">追加ログ項目の値</param>
+        </member>
+        <member name="M:Gbook.Base.Diagnostics.TraceSources.CreateTraceContext">
+            <summary>
+            トレースのコンテキストを生成して返します。
+            このメソッドはG-BOOKライブラリのカスタムツールが生成するコードから呼び出すために公開されています。
+            ユーザコードから直接呼び出すことはありません。
+            </summary>
+            <returns>生成したトレースのコンテキスト</returns>
+        </member>
+        <member name="E:Gbook.Base.Diagnostics.TraceSources.HandledException">
+            <summary>
+            トレース中に例外が投げられた時に発行されるイベントです。
+            </summary>
+        </member>
+        <member name="E:Gbook.Base.Diagnostics.TraceSources.ReceivedException">
+            <summary>
+            トレースソースの処理中に例外が投げられた時に発行されるイベントです。
+            </summary>
+        </member>
+        <member name="P:Gbook.Base.Diagnostics.TraceSources.LogItems">
+            <summary>
+            現在の論理スレッドがもつトレースの項目のリストを取得します。
+            </summary>
+        </member>
+        <member name="P:Gbook.Base.Diagnostics.TraceSources.AdditionalLogItems">
+            <summary>
+            現在の論理スレッドがもつトレースの追加項目のリストを取得します。
+            </summary>
+        </member>
+        <member name="T:Gbook.Base.Diagnostics.TraceSourceHandlerException">
+            <summary>
+            TraceSource.ReceivedExceptionに登録されたイベントハンドラが例外を投げたことを表す例外です。
+            この例外のInnerExceptionには、イベントハンドラで投げられた例外が格納されています。
+            </summary>
+        </member>
+        <member name="T:Gbook.Base.Diagnostics.TroubleContactListener">
+            <summary>出力を トラブル窓口 に転送するリスナーを提供します。</summary>
+        </member>
+        <member name="M:Gbook.Base.Diagnostics.TroubleContactListener.#ctor(System.String)">
+            <summary>
+            イベントログのソース名を指定してオブジェクトを初期化します。
+            </summary>
+            <param name="source">イベントログのソース名</param>
+        </member>
+        <member name="M:Gbook.Base.Diagnostics.TroubleContactListener.CloseCore">
+            <summary>
+            ストリームを閉じます。
+            </summary>
+        </member>
+        <member name="M:Gbook.Base.Diagnostics.TroubleContactListener.WriteTrace(Gbook.Base.Diagnostics.ITraceFormatter,Gbook.Base.Diagnostics.TraceEvent)">
+            <summary>
+            トレースを書き込みます。
+            </summary>
+            <param name="traceFormatter">文字列化に使用するトレースフォーマッター</param>
+            <param name="traceEvent">出力を行うトレースイベント</param>
+        </member>
+        <member name="P:Gbook.Base.Diagnostics.TroubleContactListener.EventLog">
+            <summary>
+            イベントログを取得します。
+            </summary>
+        </member>
+        <member name="P:Gbook.Base.Diagnostics.TroubleContactListener.Name">
+            <summary>
+            イベントログのソース名を取得または設定します。
+            </summary>
+        </member>
+    </members>
+</doc>

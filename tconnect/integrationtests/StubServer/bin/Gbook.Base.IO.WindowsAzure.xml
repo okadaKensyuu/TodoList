@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Gbook.Base.IO.WindowsAzure</name>
+    </assembly>
+    <members>
+        <member name="T:Gbook.Base.IO.WindowsAzure.Blob">
+            <summary>
+            Blobを操作するためのIFilesystemの実装です。
+            このクラスはIFilesystemを要求する場所(例えば、FileFactoryのコンストラクタ)にインスタンスを渡すだけにとどめ、
+            直接使用しないでください。
+            </summary>
+            <remarks>
+            このクラスはGbook.Base.IO.LocalFile.LocalFileクラスより、メソッドの事後条件が弱くなっています。
+            これはオンプレからAzure移行を容易にするためです。
+            </remarks>
+        </member>
+        <member name="M:Gbook.Base.IO.WindowsAzure.Blob.#ctor">
+            <summary>
+            設定から接続文字列、ベースコンテナーアドレス、リトライポリシーを取得してオブジェクトを取得します。
+            </summary>
+        </member>
+        <member name="M:Gbook.Base.IO.WindowsAzure.Blob.#ctor(System.String,Gbook.Base.IO.Path,Gbook.Base.TransientFaultHandling.IRetryPolicy)">
+            <summary>
+            接続文字列、ベースコンテナーアドレス、リトライポリシーを指定してオブジェクトを取得します。
+            </summary>
+            <param name="connectionString"></param>
+            <param name="baseContainerAddress"></param>
+            <param name="retryPolicy"></param>
+        </member>
+        <member name="M:Gbook.Base.IO.WindowsAzure.Blob.#ctor(System.String,Gbook.Base.IO.Path,Gbook.Base.TransientFaultHandling.IRetryPolicy,Gbook.Base.IO.WindowsAzure.BlobOperationOptions)">
+            <summary>
+            接続文字列、ベースコンテナーアドレス、リトライポリシー、Blob操作オプションを指定してオブジェクトを取得します。
+            </summary>
+            <param name="connectionString"></param>
+            <param name="baseContainerAddress"></param>
+            <param name="retryPolicy"></param>
+            <param name="option"></param>
+        </member>
+        <member name="M:Gbook.Base.IO.WindowsAzure.Blob.#ctor(Microsoft.WindowsAzure.Storage.CloudStorageAccount,Gbook.Base.IO.Path,Gbook.Base.TransientFaultHandling.IRetryPolicy)">
+            <summary>
+            接続文字列、ベースコンテナーアドレス、リトライポリシーを指定してオブジェクトを取得します。
+            </summary>
+            <param name="account"></param>
+            <param name="baseContainerAddress"></param>
+            <param name="retryPolicy"></param>
+        </member>
+        <member name="M:Gbook.Base.IO.WindowsAzure.Blob.#ctor(Microsoft.WindowsAzure.Storage.CloudStorageAccount,Gbook.Base.IO.Path,Gbook.Base.TransientFaultHandling.IRetryPolicy,Gbook.Base.IO.WindowsAzure.BlobOperationOptions)">
+            <summary>
+            接続文字列、ベースコンテナーアドレス、リトライポリシー、Blob操作オプションを指定してオブジェクトを取得します。
+            </summary>
+            <param name="account"></param>
+            <param name="baseContainerAddress"></param>
+            <param name="retryPolicy"></param>
+            <param name="option"></param>
+        </member>
+        <member name="T:Gbook.Base.IO.WindowsAzure.BlobOperationOptions">
+            <summary>
+            Blobを操作する際に設定可能なオプションのクラスです。
+            </summary>
+        </member>
+        <member name="T:Gbook.Base.IO.WindowsAzure.FileFactoryExtension">
+            <summary>
+            Gbook.Base.IO.WindowsAzureをusingしたときだけ、ファイルシステムのBlobが内部で利用するクライアントオブジェクトへのアクセスを提供します。
+            </summary>
+        </member>
+        <member name="M:Gbook.Base.IO.WindowsAzure.FileFactoryExtension.GetBlobClient(Gbook.Base.IO.FileFactory)">
+            <summary>
+            factoryが利用しているファイルシステムがBlobの場合、Blobで利用しているAzure SDKが提供するBlob操作用クライアントオブジェクトを取得します。
+            利用しているファイルシステムがLocalFileの場合、例外をスローします。
+            </summary>
+            <param name="factory"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Gbook.Base.IO.WindowsAzure.StorableTraceSource">
+            <summary>Storable のトレースソースを提供します。</summary>
+        </member>
+    </members>
+</doc>

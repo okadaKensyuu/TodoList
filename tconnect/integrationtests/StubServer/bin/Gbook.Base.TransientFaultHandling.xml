@@ -1,0 +1,159 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Gbook.Base.TransientFaultHandling</name>
+    </assembly>
+    <members>
+        <member name="T:Gbook.Base.TransientFaultHandling.FuncTraceSource">
+            <summary>
+            機能に関するトレースソースです。
+            </summary>
+        </member>
+        <member name="M:Gbook.Base.TransientFaultHandling.FuncTraceSource.#ctor(System.Func{System.String,Gbook.Base.Diagnostics.TraceIdentity},System.Func{System.String,System.Int32,Gbook.Base.Diagnostics.TraceIdentity},System.Func{System.String,System.Int32,System.Exception,Gbook.Base.Diagnostics.TraceIdentity},System.Func{System.String,System.Int32,Gbook.Base.Diagnostics.TraceIdentity})">
+            <summary>
+            トレースデリゲートを指定してオブジェクトを初期化します。
+            再試行に失敗した場合に、原因となった例外情報を受け取る必要がない場合に使用します。
+            </summary>
+            <param name="executing">機能開始時に呼び出されるデリゲート</param>
+            <param name="finished">機能完了時に呼び出されるデリゲート</param>
+            <param name="failed">機能失敗時に呼び出されるデリゲート</param>
+            <param name="retryFailed">機能再試行失敗時に呼び出されるデリゲート</param>
+        </member>
+        <member name="M:Gbook.Base.TransientFaultHandling.FuncTraceSource.#ctor(System.Func{System.String,Gbook.Base.Diagnostics.TraceIdentity},System.Func{System.String,System.Int32,Gbook.Base.Diagnostics.TraceIdentity},System.Func{System.String,System.Int32,System.Exception,Gbook.Base.Diagnostics.TraceIdentity},System.Func{System.String,System.Int32,System.Exception,Gbook.Base.Diagnostics.TraceIdentity})">
+            <summary>
+            トレースデリゲートを指定してオブジェクトを初期化します。
+            再試行に失敗した場合に、原因となった例外情報が必要な場合に使用します。
+            </summary>
+            <param name="executing">機能開始時に呼び出されるデリゲート</param>
+            <param name="finished">機能完了時に呼び出されるデリゲート</param>
+            <param name="failed">機能失敗時に呼び出されるデリゲート</param>
+            <param name="retryFailed">機能再試行失敗時に呼び出されるデリゲート</param>
+        </member>
+        <member name="P:Gbook.Base.TransientFaultHandling.FuncTraceSource.FunctionExecuting">
+            <summary>
+            機能が開始されました。
+            </summary>
+        </member>
+        <member name="P:Gbook.Base.TransientFaultHandling.FuncTraceSource.FunctionFinished">
+            <summary>
+            機能が完了しました。
+            </summary>
+        </member>
+        <member name="P:Gbook.Base.TransientFaultHandling.FuncTraceSource.FunctionFailed">
+            <summary>
+            機能が失敗しました。
+            </summary>
+        </member>
+        <member name="P:Gbook.Base.TransientFaultHandling.FuncTraceSource.FunctionRetryFailed">
+            <summary>
+            機能の再試行に失敗しました。
+            </summary>
+        </member>
+        <member name="T:Gbook.Base.TransientFaultHandling.FuncTracing">
+            <summary>
+            機能に対するトレースを提供します。
+            </summary>
+        </member>
+        <member name="M:Gbook.Base.TransientFaultHandling.FuncTracing.WrapRetryPolicy(System.String,Gbook.Base.TransientFaultHandling.IRetryPolicy,Gbook.Base.TransientFaultHandling.FuncTraceSource)">
+            <summary>
+            リトライポリシーにトレース機能をラップします。
+            </summary>
+            <param name="functionName"></param>
+            <param name="retryPolicy"></param>
+            <param name="traceSource"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Gbook.Base.TransientFaultHandling.FuncTracing.Retry(System.String,Gbook.Base.TransientFaultHandling.IRetryPolicy,System.Action,Gbook.Base.TransientFaultHandling.FuncTraceSource)">
+            <summary>
+            機能をリトライする機能に変換します。
+            </summary>
+            <param name="functionName">ログに使用する機能名</param>
+            <param name="retryPolicy">リトライポリシー</param>
+            <param name="action">リトライ対象となる処理</param>
+            <param name="traceSource">リトライに関するログ出力を行うトレースソース</param>
+        </member>
+        <member name="M:Gbook.Base.TransientFaultHandling.FuncTracing.Retry``1(System.String,Gbook.Base.TransientFaultHandling.IRetryPolicy,System.Func{``0},Gbook.Base.TransientFaultHandling.FuncTraceSource)">
+            <summary>
+            機能をリトライする機能に変換します。
+            </summary>
+            <typeparam name="T">機能の戻り値の型</typeparam>
+            <param name="functionName">ログに使用する機能名</param>
+            <param name="retryPolicy">リトライポリシー</param>
+            <param name="body">リトライ対象となる処理</param>
+            <param name="traceSource">リトライに関するログ出力を行うトレースソース</param>
+            <returns>リトライ処理を追加した機能</returns>
+        </member>
+        <member name="T:Gbook.Base.TransientFaultHandling.IRetryPolicy">
+            <summary>
+            リトライの方針を提供するインターフェースです。
+            </summary>
+        </member>
+        <member name="M:Gbook.Base.TransientFaultHandling.IRetryPolicy.ShouldRetry(System.Int32,System.Exception)">
+            <summary>
+            リトライするかどうかの値を返します。
+            </summary>
+            <param name="retriedCount">リトライした回数</param>
+            <param name="lastException">最後に投げられた例外</param>
+            <returns>true であれば待機したあとにリトライを行います</returns>
+        </member>
+        <member name="T:Gbook.Base.TransientFaultHandling.RetryPolicy">
+            <summary>
+            指定された回数を定数待機時間でリトライするリトライポリシーのクラスです。
+            </summary>
+        </member>
+        <member name="M:Gbook.Base.TransientFaultHandling.RetryPolicy.#ctor(System.Int32,System.TimeSpan)">
+            <summary>
+            リトライする回数と待機時間を指定してオブジェクトを初期化します。
+            </summary>
+            <param name="retryCount">リトライする回数</param>
+            <param name="intervalBetweenRetries">待機時間</param>
+        </member>
+        <member name="M:Gbook.Base.TransientFaultHandling.RetryPolicy.ShouldRetry(System.Int32,System.Exception)">
+            <summary>
+            リトライするかどうかの値と待機時間を取得します。
+            </summary>
+            <param name="retriedCount"></param>
+            <param name="lastException"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Gbook.Base.TransientFaultHandling.NoRetryPolicy">
+            <summary>
+            リトライを行わないリトライポリシーのクラスです。
+            </summary>
+        </member>
+        <member name="M:Gbook.Base.TransientFaultHandling.NoRetryPolicy.ShouldRetry(System.Int32,System.Exception)">
+            <summary>
+            リトライするかどうかの値と待機時間を取得します。
+            </summary>
+            <param name="retriedCount"></param>
+            <param name="lastException"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Gbook.Base.TransientFaultHandling.RetryPolicies">
+            <summary>
+            リトライポリシーの取得を行います。
+            </summary>
+        </member>
+        <member name="M:Gbook.Base.TransientFaultHandling.RetryPolicies.NoRetry">
+            <summary>
+            リトライを行いません。
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Gbook.Base.TransientFaultHandling.RetryPolicies.Retry(System.Int32,System.TimeSpan)">
+            <summary>
+            指定された回数リトライを行います。
+            </summary>
+            <param name="retryCount">リトライする回数</param>
+            <param name="intervalBetweenRetries">待機時間</param>
+            <returns></returns>
+        </member>
+        <member name="M:Gbook.Base.TransientFaultHandling.RetryPolicies.Parse(System.String)">
+            <summary>
+            リトライポリシー文字列を解析してリトライポリシーを取得します。
+            </summary>
+            <param name="retryExpresion"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

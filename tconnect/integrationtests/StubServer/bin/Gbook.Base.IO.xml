@@ -1,0 +1,609 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Gbook.Base.IO</name>
+    </assembly>
+    <members>
+        <member name="T:Gbook.Base.IO.Directory">
+            <summary>
+            ディレクトリの機能を提供します。
+            </summary>
+        </member>
+        <member name="T:Gbook.Base.IO.FileBase">
+            <summary>
+            ファイルとディレクトリの抽象クラスを提供します。
+            </summary>
+        </member>
+        <member name="M:Gbook.Base.IO.FileBase.#ctor(Gbook.Base.IO.Path,Gbook.Base.IO.IFilesystem)">
+            <summary>
+            指定したパスとファイルシステムでオブジェクトを初期化します。
+            </summary>
+            <param name="relativePath">パス</param>
+            <param name="filesystem">ファイルシステム</param>
+        </member>
+        <member name="M:Gbook.Base.IO.FileBase.Accept``1(System.Func{Gbook.Base.IO.Directory,``0},System.Func{Gbook.Base.IO.File,``0})">
+            <summary>
+            指定された ifDirectory に自身のオブジェクトを渡して呼び出します。ifFile は呼び出されません。
+            </summary>
+            <typeparam name="T">結果の型</typeparam>
+            <param name="ifDirectory">ディレクトリのときに処理される関数</param>
+            <param name="ifFile">ファイルのときに処理される関数</param>
+            <returns></returns>
+        </member>
+        <member name="M:Gbook.Base.IO.FileBase.Load(Gbook.Base.IO.Path,Gbook.Base.IO.IFilesystem)">
+            <summary>
+            ファイル、またはディレクトリを指定のパスとファイルシステムで読み込みます
+            </summary>
+            <param name="relativePath"></param>
+            <param name="filesystem"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Gbook.Base.IO.FileBase.RelativePath">
+            <summary>
+            ファイル、またはディレクトリのパスを取得します。
+            </summary>
+        </member>
+        <member name="P:Gbook.Base.IO.FileBase.Filesystem">
+            <summary>
+            ファイル、またはディレクトリのファイルシステムを取得します。
+            </summary>
+        </member>
+        <member name="P:Gbook.Base.IO.FileBase.Exists">
+            <summary>
+            このファイル、またはディレクトリが存在するかどうかを取得します。
+            </summary>
+        </member>
+        <member name="P:Gbook.Base.IO.FileBase.Name">
+            <summary>
+            このファイル、またはディレクトリの名前を取得します。
+            </summary>
+        </member>
+        <member name="P:Gbook.Base.IO.FileBase.AbsolutePath">
+            <summary>
+            このファイル、またはディレクトリの絶対パスを取得します。
+            </summary>
+        </member>
+        <member name="P:Gbook.Base.IO.FileBase.CreationTimeUtc">
+            <summary>
+            作成日時を世界協定時刻(UTC)で取得します。
+            </summary>
+            <returns>作成日時(UTC)</returns>
+        </member>
+        <member name="P:Gbook.Base.IO.FileBase.LastWriteTimeUtc">
+            <summary>
+            最後に書き込みが行われた時刻を世界協定時刻(UTC)で取得します。
+            </summary>
+            <returns>最終書き込み時刻(UTC)</returns>
+        </member>
+        <member name="P:Gbook.Base.IO.FileBase.LastAccessTimeUtc">
+            <summary>
+            最後にアクセスが行われた時刻を世界協定時刻(UTC)で取得します。
+            </summary>
+            <returns>最終アクセス時刻(UTC)</returns>
+        </member>
+        <member name="M:Gbook.Base.IO.Directory.#ctor(Gbook.Base.IO.Path,Gbook.Base.IO.IFilesystem)">
+            <summary>
+            パスとファイルシステムを指定してオブジェクトを初期化します。
+            </summary>
+            <param name="relativePath">ディレクトリのパス</param>
+            <param name="filesystem">ディレクトリのファイルシステム</param>
+        </member>
+        <member name="M:Gbook.Base.IO.Directory.Accept``1(System.Func{Gbook.Base.IO.Directory,``0},System.Func{Gbook.Base.IO.File,``0})">
+            <summary>
+            自身のオブジェクトの型が Directory の場合、指定された ifDirectory に自身のオブジェクトを渡して呼び出します。
+            自身のオブジェクトの型が File の場合、指定された ifFile に自身のオブジェクトを渡して呼び出します。
+            </summary>
+            <typeparam name="T">結果の型</typeparam>
+            <param name="ifDirectory">ディレクトリを処理する関数</param>
+            <param name="ifFile">この関数は使用されません</param>
+            <returns></returns>
+        </member>
+        <member name="M:Gbook.Base.IO.Directory.Create">
+            <summary>
+            ディレクトリを作成します。
+            </summary>
+        </member>
+        <member name="M:Gbook.Base.IO.Directory.Create(Gbook.Base.IO.IOperationOptions)">
+            <summary>
+            ディレクトリを作成します。
+            </summary>
+            <param name="options"></param>
+        </member>
+        <member name="M:Gbook.Base.IO.Directory.Delete(System.Boolean)">
+            <summary>
+            ディレクトリを削除します。
+            </summary>
+            <param name="recursive">true であればサブフォルダとファイルも削除します。</param>
+        </member>
+        <member name="M:Gbook.Base.IO.Directory.Delete(System.Boolean,Gbook.Base.IO.IOperationOptions)">
+            <summary>
+            ディレクトリを削除します。
+            </summary>
+            <param name="recursive">true であればサブフォルダとファイルも削除します。</param>
+            <param name="options"></param>
+        </member>
+        <member name="M:Gbook.Base.IO.Directory.List">
+            <summary>
+            サブディレクトリとファイルの列を取得します。
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Gbook.Base.IO.Directory.List(Gbook.Base.IO.IOperationOptions)">
+            <summary>
+            サブディレクトリとファイルの列を取得します。
+            </summary>
+            <param name="options"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Gbook.Base.IO.Directory.Exists">
+            <summary>
+            このディレクトリが存在するかどうかを取得します。
+            </summary>
+        </member>
+        <member name="T:Gbook.Base.IO.BaseDirectory">
+            <summary>
+            ベースディレクトリの機能を提供します。
+            </summary>
+        </member>
+        <member name="M:Gbook.Base.IO.BaseDirectory.#ctor(Gbook.Base.IO.IFilesystem)">
+            <summary>
+            パスとファイルシステムを指定してオブジェクトを初期化します。
+            </summary>
+            <param name="filesystem">ディレクトリのファイルシステム</param>
+        </member>
+        <member name="M:Gbook.Base.IO.BaseDirectory.DeleteBase(System.Boolean)">
+            <summary>
+            明示的にベースディレクトリを削除します。
+            </summary>
+            <param name="recursive">true であればサブフォルダとファイルも削除します。</param>
+        </member>
+        <member name="M:Gbook.Base.IO.BaseDirectory.DeleteBase(System.Boolean,Gbook.Base.IO.IOperationOptions)">
+            <summary>
+            明示的にベースディレクトリを削除します。
+            </summary>
+            <param name="recursive">true であればサブフォルダとファイルも削除します。</param>
+            <param name="options"></param>
+        </member>
+        <member name="T:Gbook.Base.IO.File">
+            <summary>
+            ファイルの機能を提供します。
+            </summary>
+        </member>
+        <member name="M:Gbook.Base.IO.File.#ctor(Gbook.Base.IO.Path,Gbook.Base.IO.IFilesystem)">
+            <summary>
+            パスとファイルシステムを指定してオブジェクトを初期化します。
+            </summary>
+            <param name="relativePath">ファイルのパス</param>
+            <param name="filesystem">ファイルのファイルシステム</param>
+        </member>
+        <member name="M:Gbook.Base.IO.File.Accept``1(System.Func{Gbook.Base.IO.Directory,``0},System.Func{Gbook.Base.IO.File,``0})">
+            <summary>
+            指定された ifFile に自身のオブジェクトを渡して呼び出します。ifDirectory は呼び出されません。
+            </summary>
+            <typeparam name="T">結果の型</typeparam>
+            <param name="ifDirectory">この関数は使用されません</param>
+            <param name="ifFile">ファイルを処理する関数</param>
+            <returns></returns>
+        </member>
+        <member name="M:Gbook.Base.IO.File.Delete">
+            <summary>
+            ファイルを削除します。
+            </summary>
+        </member>
+        <member name="M:Gbook.Base.IO.File.Delete(Gbook.Base.IO.IOperationOptions)">
+            <summary>
+            ファイルを削除します。
+            </summary>
+            <param name="options"></param>
+        </member>
+        <member name="M:Gbook.Base.IO.File.OpenRead">
+            <summary>
+            ファイルの読み込みストリームを取得します。
+            </summary>
+            <returns>ファイルのストリーム</returns>
+        </member>
+        <member name="M:Gbook.Base.IO.File.OpenRead(Gbook.Base.IO.IOperationOptions)">
+            <summary>
+            ファイルの読み込みストリームを取得します。
+            </summary>
+            <param name="options"></param>
+            <returns>ファイルのストリーム</returns>
+        </member>
+        <member name="M:Gbook.Base.IO.File.Save(System.IO.Stream)">
+            <summary>
+            指定のストリームをファイルに保存します。
+            </summary>
+            <param name="input">保存するストリーム</param>
+        </member>
+        <member name="M:Gbook.Base.IO.File.Save(System.IO.Stream,Gbook.Base.IO.IOperationOptions)">
+            <summary>
+            指定のストリームをファイルに保存します。
+            </summary>
+            <param name="input">保存するストリーム</param>
+            <param name="options"></param>
+        </member>
+        <member name="M:Gbook.Base.IO.File.Append(System.IO.Stream)">
+            <summary>
+            指定のストリームをファイルに追加します。
+            </summary>
+            <param name="input">保存するストリーム</param>
+        </member>
+        <member name="M:Gbook.Base.IO.File.Append(System.IO.Stream,Gbook.Base.IO.IOperationOptions)">
+            <summary>
+            指定のストリームをファイルに追加します。
+            </summary>
+            <param name="input">保存するストリーム</param>
+            <param name="options"></param>
+        </member>
+        <member name="P:Gbook.Base.IO.File.Exists">
+            <summary>
+            ファイルが存在するかどうかを取得します。
+            </summary>
+        </member>
+        <member name="P:Gbook.Base.IO.File.FileSize">
+            <summary>
+            ファイルサイズを取得します。
+            </summary>
+        </member>
+        <member name="T:Gbook.Base.IO.IOperationOptions">
+            <summary>
+            ファイルの操作に利用されるオプション設定のマーカーインターフェースです。
+            ユーザーコードでは、このインターフェースを利用しないでください。
+            </summary>
+        </member>
+        <member name="T:Gbook.Base.IO.IFilesystem">
+            <summary>
+            ファイルシステムを表すインターフェースを提供します。
+            ユーザーコードでは、このインターフェイスを介して操作を行わないでください。
+            </summary>
+        </member>
+        <member name="M:Gbook.Base.IO.IFilesystem.GetBasePath">
+            <summary>
+            ファイルシステムの起点となるパスを取得します。
+            </summary>
+            <returns>ファイルシステムの起点となるパス</returns>
+        </member>
+        <member name="M:Gbook.Base.IO.IFilesystem.CreateDirectory(Gbook.Base.IO.Path)">
+            <summary>
+            指定されたパスのディレクトリを作成します。
+            </summary>
+            <param name="relativePath">作成するディレクトリ</param>
+        </member>
+        <member name="M:Gbook.Base.IO.IFilesystem.CreateDirectory(Gbook.Base.IO.Path,Gbook.Base.IO.IOperationOptions)">
+            <summary>
+            指定されたパスのディレクトリを作成します。
+            </summary>
+            <param name="relativePath">作成するディレクトリ</param>
+            <param name="options"></param>
+        </member>
+        <member name="M:Gbook.Base.IO.IFilesystem.DeleteDirectory(Gbook.Base.IO.Path,System.Boolean)">
+            <summary>
+            指定されたパスのディレクトリを削除します。
+            </summary>
+            <param name="relativePath">削除するディレクトリ</param>
+            <param name="recursive">true であればサブフォルダとファイルも削除します。</param>
+        </member>
+        <member name="M:Gbook.Base.IO.IFilesystem.DeleteDirectory(Gbook.Base.IO.Path,System.Boolean,Gbook.Base.IO.IOperationOptions)">
+            <summary>
+            指定されたパスのディレクトリを削除します。
+            </summary>
+            <param name="relativePath">削除するディレクトリ</param>
+            <param name="recursive">true であればサブフォルダとファイルも削除します。</param>
+            <param name="options"></param>
+        </member>
+        <member name="M:Gbook.Base.IO.IFilesystem.DeleteBaseDirectory(System.Boolean)">
+            <summary>
+            指定されたパスのディレクトリを削除します。
+            </summary>
+            <param name="recursive">true であればサブフォルダとファイルも削除します。</param>
+        </member>
+        <member name="M:Gbook.Base.IO.IFilesystem.DeleteBaseDirectory(System.Boolean,Gbook.Base.IO.IOperationOptions)">
+            <summary>
+            指定されたパスのディレクトリを削除します。
+            </summary>
+            <param name="recursive">true であればサブフォルダとファイルも削除します。</param>
+            <param name="options"></param>
+        </member>
+        <member name="M:Gbook.Base.IO.IFilesystem.DeleteFile(Gbook.Base.IO.Path)">
+            <summary>
+            指定されたパスのファイルを削除します。
+            </summary>
+            <param name="relativePath">削除するファイルパス</param>
+        </member>
+        <member name="M:Gbook.Base.IO.IFilesystem.DeleteFile(Gbook.Base.IO.Path,Gbook.Base.IO.IOperationOptions)">
+            <summary>
+            指定されたパスのファイルを削除します。
+            </summary>
+            <param name="relativePath">削除するファイルパス</param>
+            <param name="options"></param>
+        </member>
+        <member name="M:Gbook.Base.IO.IFilesystem.ExistsDirectory(Gbook.Base.IO.Path)">
+            <summary>
+            指定されたパスのディレクトリが存在するかどうかを取得します。
+            </summary>
+            <param name="relativePath">ディレクトリのパス</param>
+            <returns>true であれば存在、falseであれば存在しない</returns>
+        </member>
+        <member name="M:Gbook.Base.IO.IFilesystem.ExistsFile(Gbook.Base.IO.Path)">
+            <summary>
+            指定されたパスのファイルが存在するかどうかを取得します。
+            </summary>
+            <param name="relativePath">ファイルのパス</param>
+            <returns>true であれば存在、falseであれば存在しない</returns>
+        </member>
+        <member name="M:Gbook.Base.IO.IFilesystem.GetFileSize(Gbook.Base.IO.Path)">
+            <summary>
+            指定したパスのファイルサイズを取得します。
+            </summary>
+            <param name="relativePath">ファイルのパス</param>
+            <returns>ファイルサイズ</returns>
+        </member>
+        <member name="M:Gbook.Base.IO.IFilesystem.GetFileSize(Gbook.Base.IO.Path,Gbook.Base.IO.IOperationOptions)">
+            <summary>
+            指定したパスのファイルサイズを取得します。
+            </summary>
+            <param name="relativePath">ファイルのパス</param>
+            <param name="options"></param>
+            <returns>ファイルサイズ</returns>
+        </member>
+        <member name="M:Gbook.Base.IO.IFilesystem.GetCreationTimeUtc(Gbook.Base.IO.Path)">
+            <summary>
+            指定したファイルまたはディレクトリの作成日時を世界協定時刻(UTC)で取得します。
+            </summary>
+            <param name="relativePath">ファイルのパス</param>
+            <returns>作成日時(UTC)</returns>
+        </member>
+        <member name="M:Gbook.Base.IO.IFilesystem.GetLastWriteTimeUtc(Gbook.Base.IO.Path)">
+            <summary>
+            指定したファイルまたはディレクトリに最後に書き込みが行われた時刻を世界協定時刻(UTC)で取得します。
+            </summary>
+            <param name="relativePath">ファイルのパス</param>
+            <returns>最終書き込み時刻(UTC)</returns>
+        </member>
+        <member name="M:Gbook.Base.IO.IFilesystem.GetLastAccessTimeUtc(Gbook.Base.IO.Path)">
+            <summary>
+            指定したファイルまたはディレクトリに最後にアクセスが行われた時刻を世界協定時刻(UTC)で取得します。
+            </summary>
+            <param name="relativePath">ファイルのパス</param>
+            <returns>最終アクセス時刻(UTC)</returns>
+        </member>
+        <member name="M:Gbook.Base.IO.IFilesystem.IsDirectory(Gbook.Base.IO.Path)">
+            <summary>
+            指定されたパスがディレクトリかどうかを取得します。
+            </summary>
+            <param name="relativePath">パス</param>
+            <returns>true であればディレクトリ</returns>
+        </member>
+        <member name="M:Gbook.Base.IO.IFilesystem.ListDirectory(Gbook.Base.IO.Path)">
+            <summary>
+            ディレクトリからサブディレクトリとファイル一覧を取得します。
+            </summary>
+            <param name="relativePath">ディレクトリのパス</param>
+            <returns>サブディレクトリとファイルの列</returns>
+        </member>
+        <member name="M:Gbook.Base.IO.IFilesystem.ListDirectory(Gbook.Base.IO.Path,Gbook.Base.IO.IOperationOptions)">
+            <summary>
+            ディレクトリからサブディレクトリとファイル一覧を取得します。
+            </summary>
+            <param name="relativePath">ディレクトリのパス</param>
+            <param name="options"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Gbook.Base.IO.IFilesystem.OpenRead(Gbook.Base.IO.Path)">
+            <summary>
+            指定されたパスのファイルから読み取りストリームを取得します。
+            </summary>
+            <param name="relativePath"></param>
+            <returns>取得したストリーム</returns>
+        </member>
+        <member name="M:Gbook.Base.IO.IFilesystem.OpenRead(Gbook.Base.IO.Path,Gbook.Base.IO.IOperationOptions)">
+            <summary>
+            指定されたパスのファイルから読み取りストリームを取得します。
+            </summary>
+            <param name="relativePath"></param>
+            <param name="options"></param>
+            <returns>取得したストリーム</returns>
+        </member>
+        <member name="M:Gbook.Base.IO.IFilesystem.SaveFile(Gbook.Base.IO.Path,System.IO.Stream)">
+            <summary>
+            指定されたパスのファイルにストリームを保存します。
+            </summary>
+            <param name="path"></param>
+            <param name="input"></param>
+        </member>
+        <member name="M:Gbook.Base.IO.IFilesystem.SaveFile(Gbook.Base.IO.Path,System.IO.Stream,Gbook.Base.IO.IOperationOptions)">
+            <summary>
+            指定されたパスのファイルにストリームを保存します。
+            </summary>
+            <param name="path"></param>
+            <param name="input"></param>
+            <param name="options"></param>
+        </member>
+        <member name="M:Gbook.Base.IO.IFilesystem.AppendFile(Gbook.Base.IO.Path,System.IO.Stream)">
+            <summary>
+            指定されたパスのファイルにストリームを追加します。
+            </summary>
+            <param name="path"></param>
+            <param name="input"></param>
+        </member>
+        <member name="M:Gbook.Base.IO.IFilesystem.AppendFile(Gbook.Base.IO.Path,System.IO.Stream,Gbook.Base.IO.IOperationOptions)">
+            <summary>
+            指定されたパスのファイルにストリームを追加します。
+            </summary>
+            <param name="path"></param>
+            <param name="input"></param>
+            <param name="options"></param>
+        </member>
+        <member name="T:Gbook.Base.IO.ConventionException">
+            <summary>
+            ローカル環境とWindowsAzureBlobの互換性を維持するための規則が破られたときに発生する例外です。
+            </summary>
+        </member>
+        <member name="M:Gbook.Base.IO.ConventionException.#ctor(System.String)">
+            <summary>
+            説明を指定してオブジェクトを初期化します。
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="T:Gbook.Base.IO.DefaultFileFactory">
+            <summary>
+            ファイル、もしくはディレクトリの生成を指定のファイルシステムで行います。
+            </summary>
+        </member>
+        <member name="M:Gbook.Base.IO.DefaultFileFactory.BaseDirectory">
+            <summary>
+            ベースディレクトリを取得します。
+            </summary>
+            <returns>ディレクトリのオブジェクト</returns>
+        </member>
+        <member name="M:Gbook.Base.IO.DefaultFileFactory.Directory(Gbook.Base.IO.Path)">
+            <summary>
+            指定されたパスのディレクトリを取得します。
+            </summary>
+            <param name="path">ディレクトリのパス</param>
+            <returns>ディレクトリのオブジェクト</returns>
+        </member>
+        <member name="M:Gbook.Base.IO.DefaultFileFactory.File(Gbook.Base.IO.Path)">
+            <summary>
+            指定されたパスのファイルを取得します。
+            </summary>
+            <param name="path">ファイルのパス</param>
+            <returns>ファイルのオブジェクト</returns>
+        </member>
+        <member name="P:Gbook.Base.IO.DefaultFileFactory.Factory">
+            <summary>
+            DefaultFileFactoryが利用しているFileFactoryを取得します。
+            </summary>
+        </member>
+        <member name="T:Gbook.Base.IO.FileFactory">
+            <summary>
+            ファイル、もしくはディレクトリの生成を指定のファイルシステムで行います。
+            </summary>
+        </member>
+        <member name="M:Gbook.Base.IO.FileFactory.#ctor(Gbook.Base.IO.IFilesystem)">
+            <summary>
+            指定されたファイルシステムでオブジェクトを初期化します。
+            </summary>
+            <param name="filesystem">ファイルシステム</param>
+        </member>
+        <member name="M:Gbook.Base.IO.FileFactory.BaseDirectory">
+            <summary>
+            ベースディレクトリを取得します。
+            </summary>
+            <returns>ベースディレクトリのオブジェクト</returns>
+        </member>
+        <member name="M:Gbook.Base.IO.FileFactory.Directory(Gbook.Base.IO.Path)">
+            <summary>
+            指定されたパスのディレクトリを取得します。
+            </summary>
+            <param name="path">ディレクトリのパス</param>
+            <returns>ディレクトリのオブジェクト</returns>
+        </member>
+        <member name="M:Gbook.Base.IO.FileFactory.File(Gbook.Base.IO.Path)">
+            <summary>
+            指定されたパスのファイルを取得します。
+            </summary>
+            <param name="path">ファイルのパス</param>
+            <returns>ファイルのオブジェクト</returns>
+        </member>
+        <member name="T:Gbook.Base.IO.Path">
+            <summary>
+            ファイル、もしくはディレクトリの絶対パスを表現します。
+            </summary>
+        </member>
+        <member name="M:Gbook.Base.IO.Path.op_Implicit(System.String)~Gbook.Base.IO.Path">
+            <summary>
+            String から Path に型を変換します。
+            </summary>
+            <param name="path">変換元の値</param>
+            <returns>変換後の値</returns>
+        </member>
+        <member name="M:Gbook.Base.IO.Path.op_Implicit(System.Uri)~Gbook.Base.IO.Path">
+            <summary>
+            Uri から Path に型を変換します。
+            </summary>
+            <param name="path">変換元の値</param>
+            <returns>変換後の値</returns>
+        </member>
+        <member name="M:Gbook.Base.IO.Path.#ctor(System.String)">
+            <summary>
+            指定されたパスでオブジェクトを初期化します。
+            </summary>
+            <param name="path">パス</param>
+        </member>
+        <member name="M:Gbook.Base.IO.Path.#ctor(System.Uri)">
+            <summary>
+            指定されたパスでオブジェクトを初期化します。
+            </summary>
+            <param name="path">パス</param>
+        </member>
+        <member name="M:Gbook.Base.IO.Path.GetHashCode">
+            <summary>
+            特定の型のハッシュ関数として機能します。GetHashCode は、ハッシュ アルゴリズムや、ハッシュ テーブルのようなデータ構造での使用に適しています。
+            </summary>
+            <returns>現在の Object のハッシュ コード。</returns>
+        </member>
+        <member name="M:Gbook.Base.IO.Path.Equals(System.Object)">
+            <summary>
+            指定した Object が、現在の Object と等しいかどうかを判断します。
+            </summary>
+            <param name="other">現在の Object と比較する Object。</param>
+            <returns>指定した Object が現在の Object と等しい場合は true。それ以外の場合は false。</returns>
+        </member>
+        <member name="M:Gbook.Base.IO.Path.op_Division(Gbook.Base.IO.Path,Gbook.Base.IO.Path)">
+            <summary>
+            パスを結合します。
+            </summary>
+            <param name="left">左辺</param>
+            <param name="right">右辺</param>
+            <returns></returns>
+        </member>
+        <member name="M:Gbook.Base.IO.Path.op_Division(Gbook.Base.IO.Path,System.String)">
+            <summary>
+            パスを結合します。
+            </summary>
+            <param name="left">左辺</param>
+            <param name="right">右辺</param>
+            <returns></returns>
+        </member>
+        <member name="M:Gbook.Base.IO.Path.op_Division(System.String,Gbook.Base.IO.Path)">
+            <summary>
+            パスを結合します。
+            </summary>
+            <param name="left">左辺</param>
+            <param name="right">右辺</param>
+            <returns></returns>
+        </member>
+        <member name="M:Gbook.Base.IO.Path.ToString">
+            <summary>
+            パスの文字列を取得します。
+            </summary>
+            <returns>パスの文字列</returns>
+        </member>
+        <member name="P:Gbook.Base.IO.Path.OriginalUri">
+            <summary>
+            初期化されたときのオリジナルURLを取得します。
+            </summary>
+        </member>
+        <member name="P:Gbook.Base.IO.Path.IsAbsolute">
+            <summary>
+            絶対パスかどうかの値を取得します。
+            </summary>
+        </member>
+        <member name="P:Gbook.Base.IO.Path.Segments">
+            <summary>
+            絶対パスのパスセグメントを取得します。
+            </summary>
+        </member>
+        <member name="P:Gbook.Base.IO.Path.UnescapedPath">
+            <summary>
+            初期化されたときのオリジナルURLをアンエスケープした新しいパスオブジェクトを取得します。
+            </summary>
+        </member>
+        <member name="P:Gbook.Base.IO.Path.FullPath">
+            <summary>
+            初期化されたときのオリジナルURLをパスに変換した文字列を取得します。
+            </summary>
+        </member>
+    </members>
+</doc>

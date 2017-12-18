@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Gbook.Base.TransientFaultHandling.WindowsAzure</name>
+    </assembly>
+    <members>
+        <member name="T:Gbook.Base.TransientFaultHandling.WindowsAzure.RetryPolicyExtensions">
+            <summary>
+            リトライポリシーへの拡張メソッドを提供します。
+            </summary>
+        </member>
+        <member name="M:Gbook.Base.TransientFaultHandling.WindowsAzure.RetryPolicyExtensions.AsCloudRetryPolicy(Gbook.Base.TransientFaultHandling.IRetryPolicy)">
+            <summary>
+            リトライポリシーを Windows Azure Storage のリトライポリシーに変換します。
+            </summary>
+            <param name="retryPolicy">変換元のリトライポリシー</param>
+            <returns>変換されたリトライポリシー</returns>
+        </member>
+    </members>
+</doc>
